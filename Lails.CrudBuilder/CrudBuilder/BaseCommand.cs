@@ -1,9 +1,8 @@
-﻿using Lails.Transmitter.CrudOperations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Lails.Transmitter.CrudBuilder
+namespace Lails.CrudBuilder.CrudBuilder
 {
     public abstract class BaseCommand
     {

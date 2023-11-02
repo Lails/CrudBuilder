@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Lails.Transmitter.CrudBuilder
+namespace Lails.CrudBuilder.CrudBuilder
 {
     public interface ICrudBuilder<TDbContext> where TDbContext : DbContext
     {

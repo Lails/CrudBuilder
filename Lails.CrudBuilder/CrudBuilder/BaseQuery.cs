@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace Lails.Transmitter.CrudBuilder
+namespace Lails.CrudBuilder.CrudBuilder
 {
     public abstract class BaseQuery 
     {

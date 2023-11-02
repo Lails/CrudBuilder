@@ -1,5 +1,5 @@
-﻿using Lails.DBContext;
-using Lails.Transmitter.Extansions;
+﻿using Lails.CrudBuilder.Extansions;
+using Lails.DBContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

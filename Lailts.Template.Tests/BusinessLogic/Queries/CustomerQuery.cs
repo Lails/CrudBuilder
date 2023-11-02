@@ -1,5 +1,5 @@
-﻿using Lails.DBContext;
-using Lails.Transmitter.CrudBuilder;
+﻿using Lails.CrudBuilder.CrudBuilder;
+using Lails.DBContext;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -31,7 +31,7 @@ namespace Lailts.Transmitter.Tests.BusinessLogic.Queries
             return await query.ToListAsync();
         }
 
-        private void ApplyFilter(ref IQueryable<Customer> query, CustomerFilter filter)
+        private static void ApplyFilter(ref IQueryable<Customer> query, CustomerFilter filter)
         {
             if (filter.Id.HasValue)
             {
@@ -47,7 +47,7 @@ namespace Lailts.Transmitter.Tests.BusinessLogic.Queries
 
     public class CustomerFilter
     {
-        public static CustomerFilter Create() => new CustomerFilter();
+        public static CustomerFilter Create() => new();
         public Guid? Id { get; set; }
         public string FirstName { get; set; }
 

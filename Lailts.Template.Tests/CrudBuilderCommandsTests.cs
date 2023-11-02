@@ -1,5 +1,4 @@
 using Lails.DBContext;
-using Lails.Transmitter.CrudOperations;
 using Lailts.Transmitter.Tests.BusinessLogic.Commands;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
@@ -66,7 +65,7 @@ namespace Lailts.Transmitter.Tests
             var newFirstName = MethodBase.GetCurrentMethod().Name;
 
             customer.FirstName = newFirstName;
-            CrudBuilder.BuildCommand<CustomerCommands>().Update (customer).Wait();
+            CrudBuilder.BuildCommand<CustomerCommands>().Update(customer).Wait();
 
             var changedCustomer = Context.Customers.Single(r => r.FirstName == newFirstName);
             Assert.AreEqual(changedCustomer.FirstName, newFirstName);
@@ -82,7 +81,7 @@ namespace Lailts.Transmitter.Tests
             customer.FirstName = newFirstName;
             customer2.FirstName = newFirstName;
 
-            CrudBuilder.BuildCommand<CustomerCommands>().Update(new []{ customer,customer2}.ToList()).Wait();
+            CrudBuilder.BuildCommand<CustomerCommands>().Update(new[] { customer, customer2 }.ToList()).Wait();
 
             var customers = Context.Customers.Where(r => r.FirstName == newFirstName).ToList();
             Assert.AreEqual(customers.Count, 2);

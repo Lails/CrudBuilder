@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lailts.Transmitter.Tests", "Lailts.Template.Tests\Lailts.Transmitter.Tests.csproj", "{35A68514-2C22-44E2-8D2C-6F4C2531EFB6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lails.Transmitter", "Lails.Transmitter\Lails.Transmitter.csproj", "{B4FFAD9B-0F77-4F15-97F0-53A6C3824215}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lails.CrudBuilder", "Lails.CrudBuilder\Lails.CrudBuilder.csproj", "{B4FFAD9B-0F77-4F15-97F0-53A6C3824215}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lails.Transmitter.DBContext", "Lails.DBContext\Lails.Transmitter.DBContext.csproj", "{8787CA9C-445A-402D-9289-6B63A5595756}"
 EndProject

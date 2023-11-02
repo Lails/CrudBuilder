@@ -1,8 +1,8 @@
-﻿using Lails.Transmitter.CrudBuilder;
+﻿using Lails.CrudBuilder.CrudBuilder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Lails.Transmitter.Extansions
+namespace Lails.CrudBuilder.Extansions
 {
     public static class DbCrudExtansion
     {
@@ -10,7 +10,6 @@ namespace Lails.Transmitter.Extansions
             where TDbContext : DbContext
         {
             services
-                //.AddTransient<IDbCrud<TDbContext>, DbCRUD<TDbContext>>()
                 .AddTransient<ICrudBuilder<TDbContext>, CrudBuilder<TDbContext>>();
 
             return new RegisterQueriesExtansion(services);
@@ -19,9 +18,9 @@ namespace Lails.Transmitter.Extansions
 
     public interface IRegisterQueriesAndCommandExtansion
     {
-        IServiceCollection RegisterQueriesAndCommands<TQueryAssemplyPointer, TQommandAssemplyPointer>()
+        IServiceCollection RegisterQueriesAndCommands<TQueryAssemplyPointer, TCommandAssemplyPointer>()
             where TQueryAssemplyPointer : class
-            where TQommandAssemplyPointer : class;
+            where TCommandAssemplyPointer : class;
     }
 
     public class RegisterQueriesExtansion : IRegisterQueriesAndCommandExtansion

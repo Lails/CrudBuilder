@@ -1,5 +1,5 @@
-﻿using Lails.DBContext;
-using Lails.Transmitter.CrudBuilder;
+﻿using Lails.CrudBuilder.CrudBuilder;
+using Lails.DBContext;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

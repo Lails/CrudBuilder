@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Lails.Transmitter.CrudBuilder
+namespace Lails.CrudBuilder.CrudBuilder
 {
     public class CrudBuilder<TDbContext> : ICrudBuilder<TDbContext>
         where TDbContext : DbContext
