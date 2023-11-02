@@ -13,7 +13,7 @@ namespace Lailts.Transmitter.Tests
 	public class Setup
 	{
 		protected LailsDbContext Context;
-		protected ICrudBuilder<LailsDbContext> CrudBuilder;
+		protected CrudBuilder<LailsDbContext> CrudBuilder;
 
 		[OneTimeSetUp]
 		public void SetUp()
@@ -26,13 +26,14 @@ namespace Lailts.Transmitter.Tests
 				.AddDbContext<LailsDbContext>((serviceProvider, options) => options.UseInMemoryDatabase("LailsDbContext").UseInternalServiceProvider(serviceProvider));
 
 			services
-				.AddDbCrud<LailsDbContext>();
+				.AddDbCrud<LailsDbContext>()
+				.RegisterQueriesAndCommands<Setup, Setup>();
 
 			var provider = services.BuildServiceProvider();
 
 
 			Context = (LailsDbContext)provider.GetService(typeof(LailsDbContext));
-			CrudBuilder = (ICrudBuilder<LailsDbContext>)provider.GetService(typeof(ICrudBuilder<LailsDbContext>));
+			CrudBuilder = (CrudBuilder<LailsDbContext>)provider.GetService(typeof(CrudBuilder<LailsDbContext>));
 
 		}
 
@@ -51,6 +52,7 @@ namespace Lailts.Transmitter.Tests
 			public string LastName { get; set; }
 			public string Address { get; set; }
 		}
+
 		public async Task SeedDatabase()
 		{
 			await Context.Customers.AddRangeAsync(new[] {
@@ -59,6 +61,7 @@ namespace Lailts.Transmitter.Tests
 			});
 			await Context.SaveChangesAsync();
 		}
+
 		public async Task ResetDatabase()
 		{
 			var invoces = await Context.Invoices.ToListAsync();

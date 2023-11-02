@@ -1,33 +1,33 @@
-﻿using Lails.DBContext;
-using Lails.Transmitter.BaseQuery;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
+﻿//using Lails.DBContext;
+//using Lails.Transmitter.CrudBuilder;
+//using Microsoft.EntityFrameworkCore;
+//using System;
+//using System.Linq;
 
-namespace Lails.Template.Load.Tetst.BusinessLogic.Queries
-{
-	public class CustomerQuery : BaseQuery<Customer, CustomerFilter, LailsDbContext>
-	{
-		public override IQueryable<Customer> QueryDefinition(ref IQueryable<Customer> query)
-		{
-			return query
-				.Include(r=>r.Invoices); 
-		}
+//namespace Lails.Template.Load.Tetst.BusinessLogic.Queries
+//{
+//    public class CustomerQuery : BaseQuery
+//	{
+//		public override IQueryable<Customer> QueryDefinition(ref IQueryable<Customer> query)
+//		{
+//			return query
+//				.Include(r=>r.Invoices); 
+//		}
 
-		public override IQueryable<Customer> QueryFilter(ref IQueryable<Customer> query, CustomerFilter filter)
-		{
-			if (filter.Id.HasValue)
-			{
-				query = query.Where(r => r.Id == filter.Id);
-			}
+//		public override IQueryable<Customer> QueryFilter(ref IQueryable<Customer> query, CustomerFilter filter)
+//		{
+//			if (filter.Id.HasValue)
+//			{
+//				query = query.Where(r => r.Id == filter.Id);
+//			}
 
-			return query;
-		}
-	}
+//			return query;
+//		}
+//	}
 
-	public class CustomerFilter : IQueryFilter
-	{
-		public Guid? Id { get; set; }
-	}
+//	public class CustomerFilter : IQueryFilter
+//	{
+//		public Guid? Id { get; set; }
+//	}
 
-}
+//}

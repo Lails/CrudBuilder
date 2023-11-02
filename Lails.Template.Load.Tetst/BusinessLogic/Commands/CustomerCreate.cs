@@ -1,13 +1,17 @@
 ﻿using Lails.DBContext;
-using Lails.Transmitter.BaseCommands;
+using Lails.Transmitter.CrudBuilder;
 using System.Collections.Generic;
 
 namespace Lails.Template.Load.Tetst.BusinessLogic.Commands
 {
-	public class CustomerCreate : BaseCreate<LailsDbContext, Customer>
+    public class CustomerCreate : BaseCommand
 	{
 	}
-	public class CustomersCreate : BaseCreate<LailsDbContext, List<Customer>>
+	public class CustomersCreate : BaseCommand
 	{
-	}
+    }
+    class CustomerDelete : BaseCommand { }
+    class CustomersDelete : BaseCommand { }
+    public class CustomerUpdate : BaseCommand { }
+    public class CustomersUpdate : BaseCommand { }
 }

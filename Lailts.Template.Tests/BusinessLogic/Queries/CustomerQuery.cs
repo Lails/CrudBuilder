@@ -1,50 +1,66 @@
 ﻿using Lails.DBContext;
-using Lails.Transmitter.BaseQuery;
+using Lails.Transmitter.CrudBuilder;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Lailts.Transmitter.Tests.BusinessLogic.Queries
 {
-	public class CustomerQuery : BaseQuery<Customer, CustomerFilter, LailsDbContext>
-	{
-		public override IQueryable<Customer> QueryDefinition(ref IQueryable<Customer> query)
-		{
-			return query
-				.Include(r => r.Invoices);
-		}
+    public class CustomerQuery : BaseQuery
+    {
+        public async Task<List<Customer>> GetByFilter(CustomerFilter filter)
+        {
 
-		public override IQueryable<Customer> QueryFilter(ref IQueryable<Customer> query, CustomerFilter filter)
-		{
-			if (filter.Id.HasValue)
-			{
-				query = query.Where(r => r.Id == filter.Id);
-			}
-			if (string.IsNullOrWhiteSpace(filter.FirstName) == false)
-			{
-				query = query.Where(r => r.FirstName == filter.FirstName);
-			}
+            var query = GetAsTracking<Customer>();
+            query = query
+                .Include(r => r.Invoices);
 
-			return query;
-		}
-	}
+            if (filter != null)
+                ApplyFilter(ref query, filter);
 
-	public class CustomerFilter : IQueryFilter
-	{
-		public static CustomerFilter Create() => new CustomerFilter();
-		public Guid? Id { get; set; }
-		public string FirstName { get; set; }
+            return await query.ToListAsync();
+        }
+        public async Task<List<Customer>> GetByFilterAsNoTracking(CustomerFilter filter)
+        {
+            var query = GetAsNoTracking<Customer>();
 
-		public CustomerFilter SetId(Guid? id)
-		{
-			Id = id;
-			return this;
-		}
-		public CustomerFilter SetfirstName(string firstName)
-		{
-			FirstName = firstName;
-			return this;
-		}
-	}
+            ApplyFilter(ref query, filter);
+
+            return await query.ToListAsync();
+        }
+
+        private void ApplyFilter(ref IQueryable<Customer> query, CustomerFilter filter)
+        {
+            if (filter.Id.HasValue)
+            {
+                query = query.Where(r => r.Id == filter.Id);
+            }
+
+            if (string.IsNullOrWhiteSpace(filter.FirstName) == false)
+            {
+                query = query.Where(r => r.FirstName == filter.FirstName);
+            }
+        }
+    }
+
+    public class CustomerFilter
+    {
+        public static CustomerFilter Create() => new CustomerFilter();
+        public Guid? Id { get; set; }
+        public string FirstName { get; set; }
+
+        public CustomerFilter SetId(Guid? id)
+        {
+            Id = id;
+            return this;
+        }
+        public CustomerFilter SetfirstName(string firstName)
+        {
+            FirstName = firstName;
+            return this;
+        }
+    }
 
 }
