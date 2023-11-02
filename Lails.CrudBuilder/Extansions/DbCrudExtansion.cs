@@ -10,7 +10,7 @@ namespace Lails.CrudBuilder.Extansions
             where TDbContext : DbContext
         {
             services
-                .AddTransient<ICrudBuilder<TDbContext>, CrudBuilder<TDbContext>>();
+                .AddTransient<ICrudBuilder, CrudBuilder<TDbContext>>();
 
             return new RegisterQueriesExtansion(services);
         }

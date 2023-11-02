@@ -13,7 +13,7 @@ namespace Lailts.Transmitter.Tests
     public class Setup
     {
         protected LailsDbContext Context;
-        protected ICrudBuilder<LailsDbContext> CrudBuilder;
+        protected ICrudBuilder CrudBuilder;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -33,7 +33,7 @@ namespace Lailts.Transmitter.Tests
 
 
             Context = (LailsDbContext)provider.GetService(typeof(LailsDbContext));
-            CrudBuilder = (ICrudBuilder<LailsDbContext>)provider.GetService(typeof(ICrudBuilder<LailsDbContext>));
+            CrudBuilder = (ICrudBuilder)provider.GetService(typeof(ICrudBuilder));
 
         }
 
@@ -43,8 +43,8 @@ namespace Lailts.Transmitter.Tests
         }
 
 
-        private static CustomerStruct TestCustomer1 = new() { FirstName = "Angry", LastName = "Birdth", Address = "Sydney" };
-        private static CustomerStruct TestCustomer2 = new() { FirstName = "Red", LastName = "Birdth", Address = "Melbourne" };
+        public readonly static CustomerStruct TestCustomer1 = new() { FirstName = "Angry", LastName = "Birdth", Address = "Sydney" };
+        public readonly static CustomerStruct TestCustomer2 = new() { FirstName = "Red", LastName = "Birdth", Address = "Melbourne" };
         public struct CustomerStruct
         {
             public Guid Id { get; set; }

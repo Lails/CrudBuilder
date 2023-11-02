@@ -2,7 +2,7 @@
 
 namespace Lails.CrudBuilder.CrudBuilder
 {
-    public interface ICrudBuilder<TDbContext> where TDbContext : DbContext
+    public interface ICrudBuilder
     {
         TQuery BuildQuery<TQuery>()
             where TQuery : BaseQuery;

@@ -4,7 +4,7 @@ using System;
 
 namespace Lails.CrudBuilder.CrudBuilder
 {
-    public class CrudBuilder<TDbContext> : ICrudBuilder<TDbContext>
+    public class CrudBuilder<TDbContext> : ICrudBuilder
         where TDbContext : DbContext
     {
         readonly IServiceProvider _services;
