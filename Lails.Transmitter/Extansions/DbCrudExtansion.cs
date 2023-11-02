@@ -11,7 +11,7 @@ namespace Lails.Transmitter.Extansions
         {
             services
                 //.AddTransient<IDbCrud<TDbContext>, DbCRUD<TDbContext>>()
-                .AddTransient<CrudBuilder<TDbContext>, CrudBuilderImpl<TDbContext>>();
+                .AddTransient<ICrudBuilder<TDbContext>, CrudBuilder<TDbContext>>();
 
             return new RegisterQueriesExtansion(services);
         }
@@ -31,9 +31,9 @@ namespace Lails.Transmitter.Extansions
         {
             _services = services;
         }
-        public IServiceCollection RegisterQueriesAndCommands<TQueryAssemplyPointer, TQommandAssemplyPointer>()
+        public IServiceCollection RegisterQueriesAndCommands<TQueryAssemplyPointer, TCommandAssemplyPointer>()
             where TQueryAssemplyPointer : class
-            where TQommandAssemplyPointer : class
+            where TCommandAssemplyPointer : class
         {
             _services.Scan(scan => scan
                 .FromAssemblyOf<TQueryAssemplyPointer>()
@@ -42,8 +42,8 @@ namespace Lails.Transmitter.Extansions
                 .WithTransientLifetime());
 
             _services.Scan(scan => scan
-                .FromAssemblyOf<TQommandAssemplyPointer>()
-                .AddClasses(classes => classes.AssignableTo<BaseQuery>())
+                .FromAssemblyOf<TCommandAssemplyPointer>()
+                .AddClasses(classes => classes.AssignableTo<BaseCommand>())
                 .AsSelf()
                 .WithTransientLifetime());
 
