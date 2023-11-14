@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Lails.CrudBuilder.CrudBuilder
 {
@@ -23,7 +22,7 @@ namespace Lails.CrudBuilder.CrudBuilder
             return instance;
         }
 
-        public TCommand BuildCommand<TCommand>() 
+        public TCommand BuildCommand<TCommand>()
             where TCommand : BaseCommand
         {
             var instance = _services.GetService<TCommand>();
