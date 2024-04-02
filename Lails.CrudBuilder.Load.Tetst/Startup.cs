@@ -1,6 +1,12 @@
 ﻿using Lails.CrudBuilder.DBContext;
 using Lails.CrudBuilder.Extansions;
+using Lails.CrudBuilder.Load.Tetst.Consumers;
+using Lails.CrudBuilder.Tests;
+using Lails.MQ.Rabbit;
+using MassTransit;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace Lails.CrudBuilder.Load.Tetst
 {
@@ -15,39 +21,54 @@ namespace Lails.CrudBuilder.Load.Tetst
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services
-            //	.AddEntityFrameworkInMemoryDatabase()
-            //	.AddDbContext<LailsDbContext>((serviceProvider, options) => options.UseInMemoryDatabase("LailsDbContext").UseInternalServiceProvider(serviceProvider));
-
             services.AddDbContextPool<LailsDbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("TransmitterDbTests")), 10)
-                .AddTransient<LailsDbContext>();
+                .AddTransient<DbContext, LailsDbContext>();
 
             services
-                .AddDbCrud<LailsDbContext>();
+                .AddDbCrud<LailsDbContext>()
+                .RegisterQueriesAndCommands<Setup, Setup>();
+
 
             services.AddMvc(r => { r.EnableEndpointRouting = false; });
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test service", Version = "v1" });
+            });
 
-            //services.AddMassTransit(x =>
-            //{
-            //	x.AddConsumer<LoadTestConsumer>();
+            services.RegisterRabbitPublisher()
+                .AddMassTransit(x =>
+                {
+                    x.AddConsumer<LoadTestConsumer>();
 
-            //	x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
-            //	{
-            //		cfg
-            //			.AddDataBusConfiguration(services, Configuration);
-            //		cfg
-            //			.RegisterConsumerWithRetry<LoadTestConsumer, ILoadTestEvent>(provider, 1, 1);
-            //	}));
-            //});
-            //services.RegisterDataBusPublisher();
+                    x.UsingRabbitMq((context, cfg) =>
+                    {
+                        cfg.AddDataBusConfiguration(Configuration);
+
+                        cfg
+                            .RegisterConsumerWithRetry<LoadTestConsumer, ILoadTestEvent>(context, 1, 1, 1);
+                    });
+                });
         }
 
-        public void Configure(IApplicationBuilder app,/* IBusControl busControl,*/ IServiceProvider provider)
+        public void Configure(IApplicationBuilder app,  IServiceProvider provider)
         {
             provider.GetService<LailsDbContext>().Database.Migrate();
 
-            //busControl.Start();
+
+            app.UseSwagger(c =>
+            {
+                c.RouteTemplate = "swagger/{documentName}/swagger.json";
+                c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
+                {
+                    swaggerDoc.Servers = new List<OpenApiServer> { new OpenApiServer { Url = $"https://{httpReq.Host.Value}" } };
+                });
+            });
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint($"/swagger/v1/swagger.json", "Test service");
+            });
 
             app.UseDeveloperExceptionPage();
 

@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Lails.CrudBuilder.CrudBuilder
 {
     public abstract class BaseCommand
     {
-        private DbContext _db;
+        private DbContext _db = null!;
         internal void SetDbContext<TDbContext>(TDbContext db)
             where TDbContext : DbContext
         {

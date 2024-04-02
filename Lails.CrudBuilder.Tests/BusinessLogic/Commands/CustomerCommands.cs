@@ -5,10 +5,11 @@ namespace Lails.CrudBuilder.Tests.BusinessLogic.Commands
 {
     public class CustomerCommands : BaseCommand
     {
-        public async Task Create(Customer customer)
+        public async Task<Guid> Create(Customer customer)
         {
             GetSet<Customer>().Add(customer);
             await SaveChangesAsync();
+            return customer.Id;
         }
         public async Task Create(List<Customer> customers)
         {
