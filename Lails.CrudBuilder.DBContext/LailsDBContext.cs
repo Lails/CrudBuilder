@@ -11,7 +11,6 @@ namespace Lails.CrudBuilder.DBContext
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
-			 
 
 			modelBuilder.Entity<Customer>().HasKey(r => r.Id);
 			modelBuilder.Entity<Invoice>().HasKey(r => r.Id);

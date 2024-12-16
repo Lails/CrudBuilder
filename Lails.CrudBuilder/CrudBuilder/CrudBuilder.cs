@@ -49,9 +49,8 @@ public class CrudBuilder<TDbContext> : ICrudBuilder
     }
     public async Task<TResult> WithTransaction<TResult>(Func<Task<TResult>> func, IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
     {
-        //await semaphoreSlim.WaitAsync();
         var transactionOptions = new TransactionOptions { IsolationLevel = isolationLevel };
-        using var scope = new TransactionScope(TransactionScopeOption.Required, transactionOptions);
+        using var scope = new TransactionScope(TransactionScopeOption.Required, transactionOptions, TransactionScopeAsyncFlowOption.Enabled);
 
         try
         {
@@ -65,17 +64,12 @@ public class CrudBuilder<TDbContext> : ICrudBuilder
         {
             throw;
         }
-        finally
-        {
-       //     semaphoreSlim.Release();
-        }
     }
 
     public async Task WithTransaction(Func<Task> func, IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
     {
-       // await semaphoreSlim.WaitAsync();
         var transactionOptions = new TransactionOptions { IsolationLevel = isolationLevel };
-        using var scope = new TransactionScope(TransactionScopeOption.Required, transactionOptions);
+        using var scope = new TransactionScope(TransactionScopeOption.Required, transactionOptions, TransactionScopeAsyncFlowOption.Enabled);
 
         try
         {
@@ -86,10 +80,6 @@ public class CrudBuilder<TDbContext> : ICrudBuilder
         catch (Exception)
         {
             throw;
-        }
-        finally
-        {
-      //      semaphoreSlim.Release();
         }
     }
 }

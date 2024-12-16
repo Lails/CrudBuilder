@@ -7,6 +7,7 @@ using MassTransit;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Collections;
 
 namespace Lails.CrudBuilder.Load.Tetst
 {
@@ -21,7 +22,7 @@ namespace Lails.CrudBuilder.Load.Tetst
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<LailsDbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("TransmitterDbTests")), 10)
+            services.AddDbContextPool<LailsDbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("TransmitterDbTests")),100)
                 .AddTransient<DbContext, LailsDbContext>();
 
             services
@@ -46,7 +47,7 @@ namespace Lails.CrudBuilder.Load.Tetst
                         cfg.AddDataBusConfiguration(Configuration);
 
                         cfg
-                            .RegisterConsumerWithRetry<LoadTestConsumer, ILoadTestEvent>(context, 1, 1, 1);
+                            .RegisterConsumerWithRetry<LoadTestConsumer, ILoadTestEvent>(context, 1, 1, 10);
                     });
                 });
         }
