@@ -27,7 +27,7 @@ namespace Lails.CrudBuilder.Tests
             CrudBuilder.BuildCommand<CustomerCommands>().Create(customer).Wait();
 
             var existingCustomer = Context.Customers.Single(r => r.Id == customer.Id);
-            Assert.AreEqual(existingCustomer?.FirstName, customer.FirstName);
+            Assert.That(existingCustomer?.FirstName == customer.FirstName);
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace Lails.CrudBuilder.Tests
 
             await CrudBuilder.BuildCommand<CustomerCommands>().Create(customers.ToList());
 
-            Assert.AreEqual(countsBeforeCreate + customers.Length, Context.Customers.Count());
+            Assert.That(countsBeforeCreate + customers.Length == Context.Customers.Count());
         }
         [Test]
         public void CreateRangeAsync_PassNUll_ThrowNullArgumentException()
@@ -52,7 +52,7 @@ namespace Lails.CrudBuilder.Tests
                 CrudBuilder.BuildCommand<CustomerCommands>().Create(customer).Wait();
             });
 
-            Assert.AreEqual(ex.InnerException.GetType(), typeof(ArgumentNullException));
+            Assert.That(ex.InnerException.GetType() == typeof(ArgumentNullException));
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Lails.CrudBuilder.Tests
             CrudBuilder.BuildCommand<CustomerCommands>().Update(customer).Wait();
 
             var changedCustomer = Context.Customers.Single(r => r.FirstName == newFirstName);
-            Assert.AreEqual(changedCustomer.FirstName, newFirstName);
+            Assert.That(changedCustomer.FirstName == newFirstName);
         }
 
         [Test]
@@ -81,7 +81,7 @@ namespace Lails.CrudBuilder.Tests
             CrudBuilder.BuildCommand<CustomerCommands>().Update(new[] { customer, customer2 }.ToList()).Wait();
 
             var customers = Context.Customers.Where(r => r.FirstName == newFirstName).ToList();
-            Assert.AreEqual(customers.Count, 2);
+            Assert.That(customers.Count == 2);
         }
 
         [Test]
@@ -92,7 +92,7 @@ namespace Lails.CrudBuilder.Tests
             CrudBuilder.BuildCommand<CustomerCommands>().Delete(customer).Wait();
 
             var deletedCustomer = Context.Customers.FirstOrDefault(r => r.FirstName == TestCustomer1.FirstName);
-            Assert.IsNull(deletedCustomer);
+            Assert.That(deletedCustomer == null);
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace Lails.CrudBuilder.Tests
             CrudBuilder.BuildCommand<CustomerCommands>().Delete(new[] { customer, customer2 }.ToList()).Wait();
 
             var customers = Context.Customers.Where(r => r.FirstName == TestCustomer1.FirstName || r.FirstName == TestCustomer2.FirstName).ToList();
-            Assert.AreEqual(customers.Count, 0);
+            Assert.That(customers.Count == 0);
         }
     }
 }

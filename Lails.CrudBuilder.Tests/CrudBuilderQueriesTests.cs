@@ -39,8 +39,8 @@ namespace Lails.CrudBuilder.Tests
             List<Customer> customersResult = await CrudBuilder.BuildQuery<CustomerQuery>().GetByFilter(filter);
             var oneCustomer = customersResult.Single();
 
-            Assert.AreEqual(customer.Id, oneCustomer.Id);
-            Assert.AreEqual(customer.Invoices.Count, oneCustomer.Invoices.Count);
+            Assert.That(customer.Id == oneCustomer.Id);
+            Assert.That(customer.Invoices.Count == oneCustomer.Invoices.Count);
         }
 
         [TestCase("Angry", 1)]
@@ -52,7 +52,7 @@ namespace Lails.CrudBuilder.Tests
                 .SetfirstName(firstName);
             List<Customer> customersResult = CrudBuilder.BuildQuery<CustomerQuery>().GetByFilter(filter).Result;
 
-            Assert.AreEqual(expectedCount, customersResult.Count);
+            Assert.That(expectedCount == customersResult.Count);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Lails.CrudBuilder.Tests
         {
             List<Customer> customersResult = CrudBuilder.BuildQuery<CustomerQuery>().GetByFilter(null).Result;
 
-            Assert.AreEqual(Context.Customers.Count(), customersResult.Count);
+            Assert.That(Context.Customers.Count() == customersResult.Count);
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace Lails.CrudBuilder.Tests
             Context.SaveChanges();
 
             var reloadedCustomer = Context.Customers.FirstOrDefault(r => r.Id == newCustomer.Id);
-            Assert.AreEqual(reloadedCustomer.FirstName, MethodBase.GetCurrentMethod().Name + "_changed");
+            Assert.That(reloadedCustomer!.FirstName == MethodBase.GetCurrentMethod().Name + "_changed");
         }
         [Test]
         public void RetrieverAsNoTracking_CheckNoTracking_ReturnsNoChanges()
@@ -93,7 +93,7 @@ namespace Lails.CrudBuilder.Tests
             Context.SaveChanges();
 
             var reloadedCustomer = Context.Customers.FirstOrDefault(r => r.Id == newCustomer.Id);
-            Assert.AreEqual(reloadedCustomer.FirstName, MethodBase.GetCurrentMethod().Name);
+            Assert.That(reloadedCustomer.FirstName == MethodBase.GetCurrentMethod().Name);
         }
         //TODO: Add test, what will write AsNotraking in QueryDefinition
     }
