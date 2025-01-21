@@ -11,7 +11,6 @@ namespace Lails.CrudBuilder.CrudBuilder
             _db = db;
         }
 
-
         protected DbSet<TEntity> GetSet<TEntity>()
             where TEntity : class
         {
@@ -22,21 +21,26 @@ namespace Lails.CrudBuilder.CrudBuilder
         {
             return await _db.SaveChangesAsync();
         }
+
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             return _db.SaveChangesAsync(cancellationToken);
         }
+
         public int SaveChanges()
         {
             return _db.SaveChanges();
         }
+
         public int SaveChanges(bool acceptAllChangesOnSuccess)
         {
 
             return _db.SaveChanges(acceptAllChangesOnSuccess);
         }
-
     }
+
+
+
 
     //public abstract class BaseCommand<TData> : BaseCrudOperations
     //    where TData : class

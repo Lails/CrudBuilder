@@ -77,9 +77,8 @@ namespace Lails.CrudBuilder.Load.Tetst.Consumers
                 {
                     customertId = await _crudBuilder.BuildCommand<CustomerCommands>().Create(newCustomer);
                     await _crudBuilder.BuildCommand<CustomerCommands>().Update(newCustomer);
-                    // throw new NotImplementedException();
                     return newCustomer.Id;
-                });
+                }, System.Transactions.IsolationLevel.Serializable);
             }
             catch (Exception ex)
             {

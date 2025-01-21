@@ -10,8 +10,6 @@ public class CrudBuilder<TDbContext> : ICrudBuilder
     readonly IServiceProvider _services;
     readonly TDbContext _dbContext;
 
-    private static readonly SemaphoreSlim semaphoreSlim = new(1, 1);
-
     public CrudBuilder(TDbContext dbContext, IServiceProvider services)
     {
         _services = services;
@@ -21,11 +19,7 @@ public class CrudBuilder<TDbContext> : ICrudBuilder
     public TQuery BuildQuery<TQuery>()
         where TQuery : BaseQuery
     {
-        var tQuery = _services.GetService<TQuery>();
-        if (tQuery == null)
-        {
-            throw new NullReferenceException(nameof(tQuery));
-        }
+        var tQuery = _services.GetRequiredService<TQuery>();
 
         tQuery
             .SetDbContext(_dbContext);
@@ -36,50 +30,84 @@ public class CrudBuilder<TDbContext> : ICrudBuilder
     public TCommand BuildCommand<TCommand>()
         where TCommand : BaseCommand
     {
-        var tCommand = _services.GetService<TCommand>();
-        if (tCommand == null)
-        {
-            throw new NullReferenceException(nameof(tCommand));
-        }
+        var tCommand = _services.GetRequiredService<TCommand>();
 
         tCommand
             .SetDbContext(_dbContext);
 
         return tCommand;
     }
-    public async Task<TResult> WithTransaction<TResult>(Func<Task<TResult>> func, IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
+
+    public async Task<TResult> WithTransaction<TResult>(Func<Task<TResult>> func,
+        IsolationLevel isolationLevel = IsolationLevel.RepeatableRead,
+        uint retryCount = 1)
     {
         var transactionOptions = new TransactionOptions { IsolationLevel = isolationLevel };
         using var scope = new TransactionScope(TransactionScopeOption.Required, transactionOptions, TransactionScopeAsyncFlowOption.Enabled);
 
-        try
+        uint retryIterator = 0;
+        while (retryCount > retryIterator)
         {
-            var result = func().ConfigureAwait(true).GetAwaiter().GetResult();
+            try
+            {
+                var result = await func();
 
-            scope.Complete();
+                scope.Complete();
 
-            return result;
+                return result;
+            }
+            catch (System.Data.DBConcurrencyException ex)
+            {
+                Console.WriteLine($"Retried:{retryIterator} message:{ex}. stack:{ex.StackTrace}. er:{ex.Message}");
+                retryIterator++;
+
+                if (retryCount < retryIterator)
+                {
+                    throw;
+                }
+                else
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(0.2));
+                }
+            }
+            catch { throw; }
         }
-        catch (Exception)
-        {
-            throw;
-        }
+
+        throw new InvalidOperationException();
     }
 
-    public async Task WithTransaction(Func<Task> func, IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
+    public async Task WithTransaction(Func<Task> func,
+        IsolationLevel isolationLevel = IsolationLevel.RepeatableRead,
+        uint retryCount = 1)
     {
         var transactionOptions = new TransactionOptions { IsolationLevel = isolationLevel };
         using var scope = new TransactionScope(TransactionScopeOption.Required, transactionOptions, TransactionScopeAsyncFlowOption.Enabled);
 
-        try
+        uint retryIterator = 0;
+        while (retryCount > retryIterator)
         {
-            func().ConfigureAwait(true).GetAwaiter().GetResult();
+            try
+            {
+                await func();
 
-            scope.Complete();
-        }
-        catch (Exception)
-        {
-            throw;
+                scope.Complete();
+                break;
+            }
+            catch (System.Data.DBConcurrencyException ex)
+            {
+                Console.WriteLine($"Retried:{retryIterator} message:{ex}. stack:{ex.StackTrace}. er:{ex.Message}");
+                retryIterator++;
+
+                if (retryCount < retryIterator)
+                {
+                    throw;
+                }
+                else
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(0.2));
+                }
+            }
+            catch { throw; }
         }
     }
 }

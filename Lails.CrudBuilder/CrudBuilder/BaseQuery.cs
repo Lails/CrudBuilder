@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace Lails.CrudBuilder.CrudBuilder
 {
-    public abstract class BaseQuery 
+    public abstract class BaseQuery
     {
-        private DbContext _db;
+        private DbContext _db = null!;
         internal void SetDbContext<TDbContext>(TDbContext db)
             where TDbContext : DbContext
         {
@@ -13,7 +12,7 @@ namespace Lails.CrudBuilder.CrudBuilder
         }
 
         protected IQueryable<TEntity> GetAsNoTracking<TEntity>()
-            where TEntity:class
+            where TEntity : class
         {
             return _db.Set<TEntity>().AsNoTracking();
         }
