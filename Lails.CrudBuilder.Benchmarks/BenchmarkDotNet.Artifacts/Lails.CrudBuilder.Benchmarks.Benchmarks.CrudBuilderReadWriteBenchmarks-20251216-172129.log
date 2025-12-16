@@ -1,0 +1,267 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 2 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\1cc71c33-8cdd-4887-a47d-d87489100071
+// command took 1.65 sec and exited with 0
+// start dotnet  build -c Release --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\1cc71c33-8cdd-4887-a47d-d87489100071
+// command took 4.19 sec and exited with 0
+// ***** Done, took 00:00:06 (6.01 sec)   *****
+// Found 2 benchmarks:
+//   CrudBuilderReadWriteBenchmarks.CreateCustomer_ReadWrite_WithoutTransaction: Job-EPZQKI(InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5)
+//   CrudBuilderReadWriteBenchmarks.CreateCustomer_ReadWrite_WithTransaction: Job-EPZQKI(InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5)
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// **************************
+// Benchmark: CrudBuilderReadWriteBenchmarks.CreateCustomer_ReadWrite_WithoutTransaction: Job-EPZQKI(InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 1cc71c33-8cdd-4887-a47d-d87489100071.dll --anonymousPipes 1940 1828 --benchmarkName Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderReadWriteBenchmarks.CreateCustomer_ReadWrite_WithoutTransaction --job "InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5" --benchmarkId 0 in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\1cc71c33-8cdd-4887-a47d-d87489100071\bin\Release\net8.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.13.12
+// Runtime=.NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-NNUHBY(InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 202500.00 ns, 202.5000 us/op
+WorkloadJitting  1: 1 op, 155004100.00 ns, 155.0041 ms/op
+
+OverheadWarmup   1: 100 op, 800.00 ns, 8.0000 ns/op
+OverheadWarmup   2: 100 op, 700.00 ns, 7.0000 ns/op
+OverheadWarmup   3: 100 op, 800.00 ns, 8.0000 ns/op
+OverheadWarmup   4: 100 op, 500.00 ns, 5.0000 ns/op
+OverheadWarmup   5: 100 op, 300.00 ns, 3.0000 ns/op
+OverheadWarmup   6: 100 op, 700.00 ns, 7.0000 ns/op
+OverheadWarmup   7: 100 op, 700.00 ns, 7.0000 ns/op
+
+OverheadActual   1: 100 op, 600.00 ns, 6.0000 ns/op
+OverheadActual   2: 100 op, 1000.00 ns, 10.0000 ns/op
+OverheadActual   3: 100 op, 700.00 ns, 7.0000 ns/op
+OverheadActual   4: 100 op, 700.00 ns, 7.0000 ns/op
+OverheadActual   5: 100 op, 500.00 ns, 5.0000 ns/op
+OverheadActual   6: 100 op, 700.00 ns, 7.0000 ns/op
+OverheadActual   7: 100 op, 600.00 ns, 6.0000 ns/op
+OverheadActual   8: 100 op, 600.00 ns, 6.0000 ns/op
+OverheadActual   9: 100 op, 400.00 ns, 4.0000 ns/op
+OverheadActual  10: 100 op, 600.00 ns, 6.0000 ns/op
+OverheadActual  11: 100 op, 500.00 ns, 5.0000 ns/op
+OverheadActual  12: 100 op, 400.00 ns, 4.0000 ns/op
+OverheadActual  13: 100 op, 900.00 ns, 9.0000 ns/op
+OverheadActual  14: 100 op, 500.00 ns, 5.0000 ns/op
+OverheadActual  15: 100 op, 700.00 ns, 7.0000 ns/op
+OverheadActual  16: 100 op, 500.00 ns, 5.0000 ns/op
+OverheadActual  17: 100 op, 700.00 ns, 7.0000 ns/op
+OverheadActual  18: 100 op, 700.00 ns, 7.0000 ns/op
+OverheadActual  19: 100 op, 500.00 ns, 5.0000 ns/op
+OverheadActual  20: 100 op, 500.00 ns, 5.0000 ns/op
+
+WorkloadWarmup   1: 100 op, 183127400.00 ns, 1.8313 ms/op
+WorkloadWarmup   2: 100 op, 179432400.00 ns, 1.7943 ms/op
+WorkloadWarmup   3: 100 op, 284861300.00 ns, 2.8486 ms/op
+WorkloadWarmup   4: 100 op, 371907900.00 ns, 3.7191 ms/op
+WorkloadWarmup   5: 100 op, 370054300.00 ns, 3.7005 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 100 op, 394310100.00 ns, 3.9431 ms/op
+WorkloadActual   2: 100 op, 407435200.00 ns, 4.0744 ms/op
+WorkloadActual   3: 100 op, 111880700.00 ns, 1.1188 ms/op
+WorkloadActual   4: 100 op, 135833700.00 ns, 1.3583 ms/op
+WorkloadActual   5: 100 op, 98357500.00 ns, 983.5750 us/op
+WorkloadActual   6: 100 op, 131535400.00 ns, 1.3154 ms/op
+WorkloadActual   7: 100 op, 130581300.00 ns, 1.3058 ms/op
+WorkloadActual   8: 100 op, 128337500.00 ns, 1.2834 ms/op
+WorkloadActual   9: 100 op, 100372200.00 ns, 1.0037 ms/op
+WorkloadActual  10: 100 op, 117868700.00 ns, 1.1787 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 100 op, 111880100.00 ns, 1.1188 ms/op
+WorkloadResult   2: 100 op, 135833100.00 ns, 1.3583 ms/op
+WorkloadResult   3: 100 op, 98356900.00 ns, 983.5690 us/op
+WorkloadResult   4: 100 op, 131534800.00 ns, 1.3153 ms/op
+WorkloadResult   5: 100 op, 130580700.00 ns, 1.3058 ms/op
+WorkloadResult   6: 100 op, 128336900.00 ns, 1.2834 ms/op
+WorkloadResult   7: 100 op, 100371600.00 ns, 1.0037 ms/op
+WorkloadResult   8: 100 op, 117868100.00 ns, 1.1787 ms/op
+// GC:  19 1 0 82092400 100
+// Threading:  199 0 100
+
+// AfterAll
+// Benchmark Process 26944 has exited with code 0.
+
+Mean = 1.193 ms, StdErr = 0.052 ms (4.32%), N = 8, StdDev = 0.146 ms
+Min = 0.984 ms, Q1 = 1.090 ms, Median = 1.231 ms, Q3 = 1.308 ms, Max = 1.358 ms
+IQR = 0.218 ms, LowerFence = 0.763 ms, UpperFence = 1.635 ms
+ConfidenceInterval = [0.915 ms; 1.472 ms] (CI 99.9%), Margin = 0.279 ms (23.34% of Mean)
+Skewness = -0.33, Kurtosis = 1.24, MValue = 2
+
+// ** Remained 1 (50,0 %) benchmark(s) to run. Estimated finish 2025-12-16 17:21 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// **************************
+// Benchmark: CrudBuilderReadWriteBenchmarks.CreateCustomer_ReadWrite_WithTransaction: Job-EPZQKI(InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 1cc71c33-8cdd-4887-a47d-d87489100071.dll --anonymousPipes 1548 1276 --benchmarkName Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderReadWriteBenchmarks.CreateCustomer_ReadWrite_WithTransaction --job "InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5" --benchmarkId 1 in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\1cc71c33-8cdd-4887-a47d-d87489100071\bin\Release\net8.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.13.12
+// Runtime=.NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-HGJJXA(InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 195700.00 ns, 195.7000 us/op
+WorkloadJitting  1: 1 op, 153637100.00 ns, 153.6371 ms/op
+
+OverheadWarmup   1: 100 op, 500.00 ns, 5.0000 ns/op
+OverheadWarmup   2: 100 op, 500.00 ns, 5.0000 ns/op
+OverheadWarmup   3: 100 op, 900.00 ns, 9.0000 ns/op
+OverheadWarmup   4: 100 op, 300.00 ns, 3.0000 ns/op
+OverheadWarmup   5: 100 op, 600.00 ns, 6.0000 ns/op
+
+OverheadActual   1: 100 op, 700.00 ns, 7.0000 ns/op
+OverheadActual   2: 100 op, 400.00 ns, 4.0000 ns/op
+OverheadActual   3: 100 op, 400.00 ns, 4.0000 ns/op
+OverheadActual   4: 100 op, 400.00 ns, 4.0000 ns/op
+OverheadActual   5: 100 op, 500.00 ns, 5.0000 ns/op
+OverheadActual   6: 100 op, 400.00 ns, 4.0000 ns/op
+OverheadActual   7: 100 op, 300.00 ns, 3.0000 ns/op
+OverheadActual   8: 100 op, 400.00 ns, 4.0000 ns/op
+OverheadActual   9: 100 op, 500.00 ns, 5.0000 ns/op
+OverheadActual  10: 100 op, 900.00 ns, 9.0000 ns/op
+OverheadActual  11: 100 op, 800.00 ns, 8.0000 ns/op
+OverheadActual  12: 100 op, 400.00 ns, 4.0000 ns/op
+OverheadActual  13: 100 op, 500.00 ns, 5.0000 ns/op
+OverheadActual  14: 100 op, 400.00 ns, 4.0000 ns/op
+OverheadActual  15: 100 op, 400.00 ns, 4.0000 ns/op
+OverheadActual  16: 100 op, 400.00 ns, 4.0000 ns/op
+OverheadActual  17: 100 op, 600.00 ns, 6.0000 ns/op
+OverheadActual  18: 100 op, 500.00 ns, 5.0000 ns/op
+OverheadActual  19: 100 op, 400.00 ns, 4.0000 ns/op
+OverheadActual  20: 100 op, 400.00 ns, 4.0000 ns/op
+
+WorkloadWarmup   1: 100 op, 100296600.00 ns, 1.0030 ms/op
+WorkloadWarmup   2: 100 op, 248560400.00 ns, 2.4856 ms/op
+WorkloadWarmup   3: 100 op, 363491500.00 ns, 3.6349 ms/op
+WorkloadWarmup   4: 100 op, 368450800.00 ns, 3.6845 ms/op
+WorkloadWarmup   5: 100 op, 423894100.00 ns, 4.2389 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 100 op, 370134500.00 ns, 3.7013 ms/op
+WorkloadActual   2: 100 op, 425429500.00 ns, 4.2543 ms/op
+WorkloadActual   3: 100 op, 250228900.00 ns, 2.5023 ms/op
+WorkloadActual   4: 100 op, 113313700.00 ns, 1.1331 ms/op
+WorkloadActual   5: 100 op, 114115300.00 ns, 1.1412 ms/op
+WorkloadActual   6: 100 op, 120574800.00 ns, 1.2057 ms/op
+WorkloadActual   7: 100 op, 120414300.00 ns, 1.2041 ms/op
+WorkloadActual   8: 100 op, 104348200.00 ns, 1.0435 ms/op
+WorkloadActual   9: 100 op, 116938800.00 ns, 1.1694 ms/op
+WorkloadActual  10: 100 op, 108078700.00 ns, 1.0808 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 100 op, 370134100.00 ns, 3.7013 ms/op
+WorkloadResult   2: 100 op, 250228500.00 ns, 2.5023 ms/op
+WorkloadResult   3: 100 op, 113313300.00 ns, 1.1331 ms/op
+WorkloadResult   4: 100 op, 114114900.00 ns, 1.1411 ms/op
+WorkloadResult   5: 100 op, 120574400.00 ns, 1.2057 ms/op
+WorkloadResult   6: 100 op, 120413900.00 ns, 1.2041 ms/op
+WorkloadResult   7: 100 op, 104347800.00 ns, 1.0435 ms/op
+WorkloadResult   8: 100 op, 116938400.00 ns, 1.1694 ms/op
+WorkloadResult   9: 100 op, 108078300.00 ns, 1.0808 ms/op
+// GC:  19 0 0 82352352 100
+// Threading:  201 0 100
+
+// AfterAll
+// Benchmark Process 25728 has exited with code 0.
+
+Mean = 1.576 ms, StdErr = 0.306 ms (19.40%), N = 9, StdDev = 0.917 ms
+Min = 1.043 ms, Q1 = 1.133 ms, Median = 1.169 ms, Q3 = 1.206 ms, Max = 3.701 ms
+IQR = 0.073 ms, LowerFence = 1.024 ms, UpperFence = 1.315 ms
+ConfidenceInterval = [0.034 ms; 3.117 ms] (CI 99.9%), Margin = 1.541 ms (97.81% of Mean)
+Skewness = 1.41, Kurtosis = 3.36, MValue = 2
+
+// ** Remained 0 (0,0 %) benchmark(s) to run. Estimated finish 2025-12-16 17:21 (0h 0m from now) **
+Successfully reverted power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts\results\Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderReadWriteBenchmarks-report.csv
+  BenchmarkDotNet.Artifacts\results\Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderReadWriteBenchmarks-report-github.md
+  BenchmarkDotNet.Artifacts\results\Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderReadWriteBenchmarks-report.html
+
+// * Detailed results *
+CrudBuilderReadWriteBenchmarks.CreateCustomer_ReadWrite_WithoutTransaction: Job-EPZQKI(InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5)
+Runtime = .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 1.193 ms, StdErr = 0.052 ms (4.32%), N = 8, StdDev = 0.146 ms
+Min = 0.984 ms, Q1 = 1.090 ms, Median = 1.231 ms, Q3 = 1.308 ms, Max = 1.358 ms
+IQR = 0.218 ms, LowerFence = 0.763 ms, UpperFence = 1.635 ms
+ConfidenceInterval = [0.915 ms; 1.472 ms] (CI 99.9%), Margin = 0.279 ms (23.34% of Mean)
+Skewness = -0.33, Kurtosis = 1.24, MValue = 2
+-------------------- Histogram --------------------
+[0.956 ms ; 1.173 ms) | @@@
+[1.173 ms ; 1.364 ms) | @@@@@
+---------------------------------------------------
+
+CrudBuilderReadWriteBenchmarks.CreateCustomer_ReadWrite_WithTransaction: Job-EPZQKI(InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5)
+Runtime = .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 1.576 ms, StdErr = 0.306 ms (19.40%), N = 9, StdDev = 0.917 ms
+Min = 1.043 ms, Q1 = 1.133 ms, Median = 1.169 ms, Q3 = 1.206 ms, Max = 3.701 ms
+IQR = 0.073 ms, LowerFence = 1.024 ms, UpperFence = 1.315 ms
+ConfidenceInterval = [0.034 ms; 3.117 ms] (CI 99.9%), Margin = 1.541 ms (97.81% of Mean)
+Skewness = 1.41, Kurtosis = 3.36, MValue = 2
+-------------------- Histogram --------------------
+[0.465 ms ; 1.703 ms) | @@@@@@@
+[1.703 ms ; 3.081 ms) | @
+[3.081 ms ; 4.280 ms) | @
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet v0.13.12, Windows 10 (10.0.19045.6216/22H2/2022Update)
+AMD Ryzen 7 2700X, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 9.0.307
+  [Host]     : .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+  Job-EPZQKI : .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+
+InvocationCount=100  IterationCount=10  UnrollFactor=1  
+WarmupCount=5  
+
+| Method                                      | Mean     | Error     | StdDev    | Median   | Ratio | RatioSD | Gen0     | Gen1    | Allocated | Alloc Ratio |
+|-------------------------------------------- |---------:|----------:|----------:|---------:|------:|--------:|---------:|--------:|----------:|------------:|
+| CreateCustomer_ReadWrite_WithoutTransaction | 1.193 ms | 0.2786 ms | 0.1457 ms | 1.231 ms |  1.00 |    0.00 | 190.0000 | 10.0000 | 801.68 KB |        1.00 |
+| CreateCustomer_ReadWrite_WithTransaction    | 1.576 ms | 1.5413 ms | 0.9172 ms | 1.169 ms |  1.38 |    0.84 | 190.0000 |       - | 804.22 KB |        1.00 |
+
+// * Warnings *
+MinIterationTime
+  CrudBuilderReadWriteBenchmarks.CreateCustomer_ReadWrite_WithoutTransaction: InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5 -> The minimum observed iteration time is 98.3575 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+
+// * Hints *
+Outliers
+  CrudBuilderReadWriteBenchmarks.CreateCustomer_ReadWrite_WithoutTransaction: InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5 -> 2 outliers were removed (3.94 ms, 4.07 ms)
+  CrudBuilderReadWriteBenchmarks.CreateCustomer_ReadWrite_WithTransaction: InvocationCount=100, IterationCount=10, UnrollFactor=1, WarmupCount=5    -> 1 outlier  was  removed (4.25 ms)
+
+// * Legends *
+  Mean        : Arithmetic mean of all measurements
+  Error       : Half of 99.9% confidence interval
+  StdDev      : Standard deviation of all measurements
+  Median      : Value separating the higher half of all measurements (50th percentile)
+  Ratio       : Mean of the ratio distribution ([Current]/[Baseline])
+  RatioSD     : Standard deviation of the ratio distribution ([Current]/[Baseline])
+  Gen0        : GC Generation 0 collects per 1000 operations
+  Gen1        : GC Generation 1 collects per 1000 operations
+  Allocated   : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  Alloc Ratio : Allocated memory ratio distribution ([Current]/[Baseline])
+  1 ms        : 1 Millisecond (0.001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:00:16 (16.51 sec), executed benchmarks: 2
+
+Global total time: 00:00:23 (23.05 sec), executed benchmarks: 2
+// * Artifacts cleanup *
+Artifacts cleanup is finished

@@ -10,16 +10,44 @@ namespace Lails.CrudBuilder.Extensions
     public static class DbCrudExtension
     {
         /// <summary>
-        /// Регистрирует <see cref="ICrudBuilder"/> и возвращает объект для дальнейшей регистрации команд и запросов.
+        /// Регистрирует <see cref="ICrudBuilder"/> с одним контекстом для чтения и записи
+        /// и возвращает объект для дальнейшей регистрации команд и запросов.
         /// </summary>
-        /// <typeparam name="TDbContext">Тип контекста базы данных.</typeparam>
+        /// <typeparam name="TReadWriteDbContext">Тип контекста базы данных, используемого для операций чтения и записи.</typeparam>
         /// <param name="services">Коллекция сервисов DI-контейнера.</param>
         /// <returns>Интерфейс для регистрации CQRS-команд и запросов.</returns>
-        public static IRegisterQueriesAndCommandExtension AddDbCrud<TDbContext>(this IServiceCollection services)
-            where TDbContext : DbContext
+        public static IRegisterQueriesAndCommandExtension AddDbCrud<TReadWriteDbContext>(this IServiceCollection services)
+            where TReadWriteDbContext : DbContext
         {
             services
-                .AddTransient<ICrudBuilder, CrudBuilder<TDbContext>>();
+                .AddTransient<ICrudBuilder, CrudBuilder<TReadWriteDbContext>>();
+
+            return new RegisterQueriesExtension(services);
+        }
+
+        /// <summary>
+        /// Регистрирует <see cref="ICrudBuilder"/> с разделением контекста для чтения и записи.
+        /// Если <typeparamref name="TReadDbContext"/> и <typeparamref name="TWriteDbContext"/> совпадают,
+        /// выбрасывается <see cref="InvalidOperationException"/> — в таком случае используйте перегрузку
+        /// <see cref="AddDbCrud{TReadWriteDbContext}(IServiceCollection)"/> для явного сценария с одним контекстом.
+        /// </summary>
+        /// <typeparam name="TReadDbContext">Тип контекста для операций чтения.</typeparam>
+        /// <typeparam name="TWriteDbContext">Тип контекста для операций записи.</typeparam>
+        /// <param name="services">Коллекция сервисов DI-контейнера.</param>
+        /// <returns>Интерфейс для регистрации CQRS-команд и запросов.</returns>
+        public static IRegisterQueriesAndCommandExtension AddDbCrud<TReadDbContext, TWriteDbContext>(this IServiceCollection services)
+            where TReadDbContext : DbContext
+            where TWriteDbContext : DbContext
+        {
+            if (typeof(TReadDbContext) == typeof(TWriteDbContext))
+            {
+                throw new InvalidOperationException(
+                    $"Для регистрации с одним DbContext используйте AddDbCrud<{typeof(TReadDbContext).Name}>(). " +
+                    "Перегрузка AddDbCrud<TReadDbContext, TWriteDbContext> предназначена для разных типов контекстов чтения и записи.");
+            }
+
+            services
+                .AddTransient<ICrudBuilder, CrudBuilder<TReadDbContext, TWriteDbContext>>();            
 
             return new RegisterQueriesExtension(services);
         }

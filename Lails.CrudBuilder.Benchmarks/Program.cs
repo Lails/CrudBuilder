@@ -1,5 +1,4 @@
 using BenchmarkDotNet.Running;
-using Lails.CrudBuilder.Benchmarks.Benchmarks;
 
 namespace Lails.CrudBuilder.Benchmarks;
 

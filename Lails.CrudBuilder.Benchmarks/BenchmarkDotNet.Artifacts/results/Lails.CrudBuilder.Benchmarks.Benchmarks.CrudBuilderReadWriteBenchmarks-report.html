@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderReadWriteBenchmarks-20251216-175557</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.13.12, Windows 10 (10.0.19045.6216/22H2/2022Update)
+AMD Ryzen 7 2700X, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 9.0.307
+  [Host]     : .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+  Job-KAFVBB : .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+</code></pre>
+<pre><code>InvocationCount=100  IterationCount=10  UnrollFactor=1  
+WarmupCount=5  
+</code></pre>
+
+<table>
+<thead><tr><th>Method                                         </th><th>Mean </th><th>Error</th><th>StdDev</th><th>Median</th><th>Ratio</th><th>RatioSD</th><th>Gen0</th><th>Gen1</th><th>Gen2</th><th>Allocated</th><th>Alloc Ratio</th>
+</tr>
+</thead><tbody><tr><td>CreateCustomer_ReadWrite_WithoutTransaction</td><td>1,292.5 &mu;s</td><td>881.7 &mu;s</td><td>524.68 &mu;s</td><td>1,114.6 &mu;s</td><td>1.00</td><td>0.00</td><td>190.0000</td><td>10.0000</td><td>-</td><td>801.69 KB</td><td>1.00</td>
+</tr><tr><td>CreateCustomer_ReadWrite_WithTransaction</td><td>1,461.3 &mu;s</td><td>1,082.5 &mu;s</td><td>644.15 &mu;s</td><td>1,089.8 &mu;s</td><td>1.29</td><td>0.71</td><td>190.0000</td><td>10.0000</td><td>-</td><td>804.29 KB</td><td>1.00</td>
+</tr><tr><td>CreateCustomer_ReadWrite_WithTransaction_RetryCount2</td><td>2,232.1 &mu;s</td><td>2,029.5 &mu;s</td><td>1,342.40 &mu;s</td><td>1,560.2 &mu;s</td><td>1.99</td><td>1.43</td><td>190.0000</td><td>-</td><td>-</td><td>804.18 KB</td><td>1.00</td>
+</tr><tr><td>CreateCustomer_ReadWrite_WithTransaction_RetryCount3</td><td>2,104.4 &mu;s</td><td>2,142.7 &mu;s</td><td>1,417.26 &mu;s</td><td>1,283.1 &mu;s</td><td>1.87</td><td>1.53</td><td>190.0000</td><td>-</td><td>-</td><td>804.18 KB</td><td>1.00</td>
+</tr><tr><td>CreateCustomer_ReadWrite_WithTransaction_Serializable</td><td>2,211.1 &mu;s</td><td>2,210.1 &mu;s</td><td>1,461.83 &mu;s</td><td>1,376.3 &mu;s</td><td>1.98</td><td>1.60</td><td>190.0000</td><td>-</td><td>-</td><td>804.3 KB</td><td>1.00</td>
+</tr><tr><td>CreateCustomer_ReadWrite_WithTransaction_WithDelay</td><td>2,173.7 &mu;s</td><td>1,786.3 &mu;s</td><td>1,181.51 &mu;s</td><td>1,817.5 &mu;s</td><td>1.83</td><td>1.05</td><td>190.0000</td><td>-</td><td>-</td><td>804.03 KB</td><td>1.00</td>
+</tr><tr><td>CreateAndUpdate_ReadWrite_WithTransaction</td><td>3,763.8 &mu;s</td><td>189.3 &mu;s</td><td>99.00 &mu;s</td><td>3,727.7 &mu;s</td><td>3.20</td><td>0.93</td><td>390.0000</td><td>10.0000</td><td>-</td><td>1604.37 KB</td><td>2.00</td>
+</tr><tr><td>CreateMultipleCustomers_ReadWrite_WithTransaction</td><td>52,908.6 &mu;s</td><td>25,698.6 &mu;s</td><td>16,998.02 &mu;s</td><td>51,517.1 &mu;s</td><td>43.58</td><td>17.84</td><td>19230.0000</td><td>630.0000</td><td>210.0000</td><td>78902.67 KB</td><td>98.42</td>
+</tr><tr><td>ReadCustomers_ReadWrite_Query_ReadContext</td><td>3,367.5 &mu;s</td><td>1,747.4 &mu;s</td><td>1,155.77 &mu;s</td><td>3,054.0 &mu;s</td><td>3.06</td><td>1.51</td><td>200.0000</td><td>10.0000</td><td>-</td><td>813.24 KB</td><td>1.01</td>
+</tr><tr><td>Write_ReadWrite_Command_WriteContext</td><td>952.2 &mu;s</td><td>162.0 &mu;s</td><td>84.74 &mu;s</td><td>963.7 &mu;s</td><td>0.82</td><td>0.26</td><td>190.0000</td><td>-</td><td>-</td><td>801.72 KB</td><td>1.00</td>
+</tr><tr><td>WriteThenRead_ReadWrite_SeparateContexts</td><td>2,354.5 &mu;s</td><td>1,741.6 &mu;s</td><td>1,151.97 &mu;s</td><td>1,855.2 &mu;s</td><td>1.75</td><td>0.64</td><td>200.0000</td><td>10.0000</td><td>-</td><td>813.26 KB</td><td>1.01</td>
+</tr><tr><td>MultipleReads_ReadWrite_ReadContextOnly</td><td>14,824.6 &mu;s</td><td>5,588.1 &mu;s</td><td>3,696.21 &mu;s</td><td>14,725.6 &mu;s</td><td>12.35</td><td>4.52</td><td>4910.0000</td><td>190.0000</td><td>-</td><td>20065.24 KB</td><td>25.03</td>
+</tr><tr><td>MultipleWrites_ReadWrite_WriteContextOnly</td><td>19,928.7 &mu;s</td><td>2,075.6 &mu;s</td><td>1,372.85 &mu;s</td><td>19,438.7 &mu;s</td><td>16.89</td><td>4.80</td><td>4840.0000</td><td>280.0000</td><td>-</td><td>19758.42 KB</td><td>24.65</td>
+</tr><tr><td>ReadWriteMixed_ReadWrite_SeparateContexts</td><td>7,071.5 &mu;s</td><td>1,225.3 &mu;s</td><td>810.49 &mu;s</td><td>7,383.1 &mu;s</td><td>5.95</td><td>1.67</td><td>780.0000</td><td>-</td><td>-</td><td>3201.24 KB</td><td>3.99</td>
+</tr></tbody></table>
+</body>
+</html>
