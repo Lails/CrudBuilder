@@ -42,17 +42,16 @@ namespace Lails.CrudBuilder.Tests
 
             Assert.That(countsBeforeCreate + customers.Length == Context.Customers.Count());
         }
+
         [Test]
-        public void CreateRangeAsync_PassNUll_ThrowNullArgumentException()
+        public async Task CreateRangeAsync_PassNUll_ThrowNullArgumentException()
         {
             Customer customer = null;
 
-            var ex = Assert.Throws<AggregateException>(() =>
+            var ex = Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                CrudBuilder.BuildCommand<CustomerCommands>().Create(customer).Wait();
+                await CrudBuilder.BuildCommand<CustomerCommands>().Create(customer);
             });
-
-            Assert.That(ex.InnerException.GetType() == typeof(ArgumentNullException));
         }
 
         [Test]

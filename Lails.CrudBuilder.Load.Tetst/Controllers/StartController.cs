@@ -16,7 +16,7 @@ namespace Lails.CrudBuilder.Load.Tetst.Controllers
 
         [Route("startLoadTest")]
         [HttpGet]
-        public async Task StartLoadTest()
+        public void StartLoadTest()
         {
             Parallel.For(0, 200, (i) =>
             {

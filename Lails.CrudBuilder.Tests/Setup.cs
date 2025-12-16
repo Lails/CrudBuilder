@@ -1,6 +1,6 @@
 ﻿using Lails.CrudBuilder.CrudBuilder;
 using Lails.CrudBuilder.DBContext;
-using Lails.CrudBuilder.Extansions;
+using Lails.CrudBuilder.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;

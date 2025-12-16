@@ -1,10 +1,8 @@
 ﻿using Lails.CrudBuilder.CrudBuilder;
 using Lails.CrudBuilder.DBContext;
 using Lails.CrudBuilder.Tests.BusinessLogic.Commands;
-using Lails.CrudBuilder.Tests.BusinessLogic.Queries;
 using Lails.MQ.Rabbit.Consumer;
 using MassTransit;
-using Microsoft.EntityFrameworkCore;
 
 namespace Lails.CrudBuilder.Load.Tetst.Consumers
 {
@@ -80,7 +78,7 @@ namespace Lails.CrudBuilder.Load.Tetst.Consumers
                     return newCustomer.Id;
                 }, System.Transactions.IsolationLevel.Serializable);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 var existingCustomer = dBContext.Customers.SingleOrDefault(r => r.Id == customertId);
             }

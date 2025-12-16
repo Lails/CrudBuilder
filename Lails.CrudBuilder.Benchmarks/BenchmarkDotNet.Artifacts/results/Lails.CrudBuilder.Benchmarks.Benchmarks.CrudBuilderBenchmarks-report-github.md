@@ -1,0 +1,22 @@
+```
+
+BenchmarkDotNet v0.13.12, Windows 10 (10.0.19045.6216/22H2/2022Update)
+AMD Ryzen 7 2700X, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 9.0.307
+  [Host]     : .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+  Job-SKSAHM : .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+
+InvocationCount=50  IterationCount=10  UnrollFactor=1  
+WarmupCount=5  
+
+```
+| Method                                      | Mean      | Error      | StdDev    | Median    | Ratio | RatioSD | Gen0      | Gen1     | Allocated   | Alloc Ratio |
+|-------------------------------------------- |----------:|-----------:|----------:|----------:|------:|--------:|----------:|---------:|------------:|------------:|
+| CreateCustomer_WithoutTransaction           |  2.793 ms |  1.9602 ms | 1.2965 ms |  3.513 ms |  1.00 |    0.00 |  100.0000 |        - |   408.25 KB |        1.00 |
+| CreateCustomer_WithTransaction              |  3.436 ms |  1.5175 ms | 1.0037 ms |  3.713 ms |  1.52 |    0.95 |  100.0000 |        - |   411.27 KB |        1.01 |
+| CreateCustomer_WithTransaction_RetryCount2  |  1.062 ms |  0.2059 ms | 0.1225 ms |  1.103 ms |  0.49 |    0.40 |  100.0000 |        - |   410.57 KB |        1.01 |
+| CreateCustomer_WithTransaction_RetryCount3  |  4.015 ms |  0.5358 ms | 0.3544 ms |  3.852 ms |  2.12 |    1.67 |  100.0000 |        - |   411.25 KB |        1.01 |
+| CreateCustomer_WithTransaction_Serializable |  3.891 ms |  0.3469 ms | 0.2064 ms |  3.916 ms |  1.78 |    1.44 |  100.0000 |        - |   412.04 KB |        1.01 |
+| CreateCustomer_WithTransaction_WithDelay    |  3.377 ms |  1.6535 ms | 1.0937 ms |  3.748 ms |  1.39 |    0.56 |  100.0000 |        - |   410.86 KB |        1.01 |
+| CreateAndUpdate_WithTransaction             |  4.635 ms |  1.5484 ms | 1.0242 ms |  4.329 ms |  2.15 |    1.23 |  200.0000 |        - |   817.34 KB |        2.00 |
+| CreateMultipleCustomers_WithTransaction     | 26.961 ms | 11.8002 ms | 7.8051 ms | 26.657 ms | 15.95 |   15.62 | 9680.0000 | 400.0000 | 39546.65 KB |       96.87 |

@@ -1,62 +1,177 @@
-# Transmitter
+## Lails.CrudBuilder
 
-## USAGE:
+Лёгкая CQRS/CRUD-надстройка над Entity Framework Core с транзакциями и retry-логикой.
 
-#### Add CRUD into IServiceCollection: 
-```C#
-	Services.AddDbCrud<YOURDbContext>();
+### Установка и регистрация
+
+```csharp
+// Startup / Program
+services.AddDbContextPool<LailsDbContext>(options =>
+    options.UseNpgsql(connectionString));
+
+services
+    .AddDbCrud<LailsDbContext>()
+    .RegisterQueriesAndCommands<MyQueryAssemblyMarker, MyCommandAssemblyMarker>();
 ```
 
-#### Create,Update,Delete operations:
-```C#
-	//Use DI for using builder.
-	ICrudBuilder<YOURDbContext> cRUDBuilder
+`MyQueryAssemblyMarker` и `MyCommandAssemblyMarker` — любые типы из сборок, где лежат ваши `BaseQuery` и `BaseCommand`.
 
-	//Create
-	await _crudBuilder.Build<CustomerCreate>().Execute(customer);	
- 	///Update
-	await _crudBuilder.Build<CustomerUpdate>().Execute(customer);
-	///Delete
-	await _crudBuilder.Build<CustomerDelete>().Execute(customer);
-	
-	
-	//Example createClass class:	
-	public class CustomerCreate : BaseCreate<YOURDbContext, Customer> {}
-	public class CustomersCreate : BaseCreate<YOURDbContext, List<Customer>> {}
-	
-	
+### Команды (Create/Update/Delete)
+
+```csharp
+public class CustomerCommands : BaseCommand
+{
+    public async Task<Guid> Create(Customer customer)
+    {
+        var set = GetSet<Customer>();
+        await set.AddAsync(customer);
+        await SaveChangesAsync();
+        return customer.Id;
+    }
+}
+
+// Использование
+var cmd = _crudBuilder.BuildCommand<CustomerCommands>();
+var id = await cmd.Create(customer);
+или
+var id = await _crudBuilder.BuildCommand<CustomerCommands>().Create(customer);
+```
+
+### Запросы (Read)
+
+```csharp
+public class CustomerQuery : BaseQuery
+{
+    // Простейший запрос - получить всех клиентов
+    public IQueryable<Customer> GetAll()
+        => GetAsNoTracking<Customer>();
+
+    // Более реальный пример: несколько разных запросов в одном query-классе
+    public IQueryable<Customer> GetByCity(string city)
+        => GetAsNoTracking<Customer>()
+            .Where(c => c.Address == city);
+
+    public IQueryable<Customer> Search(string? namePart, string? city)
+    {
+        var query = GetAsNoTracking<Customer>();
+
+        if (!string.IsNullOrWhiteSpace(namePart))
+        {
+            query = query.Where(c =>
+                c.FirstName.Contains(namePart) ||
+                c.LastName.Contains(namePart));
+        }
+
+        if (!string.IsNullOrWhiteSpace(city))
+        {
+            query = query.Where(c => c.Address == city);
+        }
+
+        return query;
+    }
+}
+
+// Использование
+var query = _crudBuilder.BuildQuery<CustomerQuery>();
+
+// 1. Все клиенты
+var all = await query.GetAll().ToListAsync();
+
+// 2. Клиенты по городу
+var inSydney = await query.GetByCity("Sydney").ToListAsync();
+
+// 3. Клиенты по фильтру
+var filtered = await query.Search("Angry", "Sydney").ToListAsync();
+```
+
+### Транзакции с retry
+
+```csharp
+// Реальный кейс: несколько операций в одной транзакции
+await _crudBuilder.WithTransaction(async () =>
+{
+    var cmd = _crudBuilder.BuildCommand<CustomerCommands>();
+
+    // 1. Создаём клиента
+    var customerId = await cmd.Create(customer);
+
+    // 2. Обновляем этого же клиента
+    customer.FirstName = "Updated";
+    await cmd.Update(customer);
+
+    // 3. Создаём несколько связанных сущностей (пример)
+    foreach (var invoice in invoices)
+    {
+        invoice.CustomerId = customerId;
+        await cmd.CreateInvoice(invoice);
+    }
+},
+isolationLevel: IsolationLevel.ReadCommitted,
+retryCount: 2,
+retryDelay: TimeSpan.FromMilliseconds(100),
+cancellationToken: cancellationToken);
+```
+
+### Потоковое чтение больших выборок
+
+```csharp
+public class CustomerStreamQuery : BaseQuery
+{
+    public async IAsyncEnumerable<Customer> GetAllStream()
+    {
+        await foreach (var c in GetAsNoTrackingStream<Customer>())
+            yield return c;
+    }
+}
 ``` 
 
-#### Read operations:
-```C#
- 
-	//filter example:	
-	CustomerFilter filter = new CustomerFilter { Id = customer.Id };
-	var customers = await _crudBuilder.Build<CustomerQuery>().ApplyFilter(filter);
-	//Here the variable "customers" every time will be List<Customer>.
-	
-	//Filter example.
-	//public class CustomerQuery : BaseQuery<Customer, CustomerFilter, YOURDbContext>
-	//{
-	//	public override IQueryable<Customer> QueryDefinition(ref IQueryable<Customer> query)
-	//	{
-	//		return query
-	//			.Include(r=>r.Invoices); 
-	//	}
-	//
-	//	public override IQueryable<Customer> QueryFilter(ref IQueryable<Customer> query, CustomerFilter filter)
-	//	{
-	//		if (filter.Id.HasValue)
-	//		{
-	//			query = query.Where(r => r.Id == filter.Id);
-	//		}
-	//
-	//		return query;
-	//	}
-	//}
+### Полный список доступных API
 
-	//public class CustomerFilter : IQueryFilter
-	//{
-	//	public Guid? Id { get; set; }
-	//}
-``` 
+#### Расширения регистрации (`Lails.CrudBuilder.Extensions`)
+
+- `IServiceCollection AddDbCrud<TDbContext>()`
+  - Регистрирует `ICrudBuilder` c указанным `DbContext`.
+  - Возвращает `IRegisterQueriesAndCommandExtension` для дальнейшей регистрации.
+
+- `IServiceCollection RegisterQueriesAndCommands<TQueryAssemblyPointer, TCommandAssemblyPointer>()`
+  - Сканирует сборку `TQueryAssemblyPointer` и регистрирует все типы, наследующие `BaseQuery`.
+  - Сканирует сборку `TCommandAssemblyPointer` и регистрирует все типы, наследующие `BaseCommand`.
+
+#### Интерфейс `ICrudBuilder`
+
+- `TQuery BuildQuery<TQuery>() where TQuery : BaseQuery`
+  - Создаёт и настраивает экземпляр query-класса с текущим `DbContext`.
+
+- `TCommand BuildCommand<TCommand>() where TCommand : BaseCommand`
+  - Создаёт и настраивает экземпляр command-класса с текущим `DbContext`.
+
+- `Task<TResult> WithTransaction<TResult>(Func<Task<TResult>> func, IsolationLevel isolationLevel = IsolationLevel.RepeatableRead, uint retryCount = 1, TimeSpan? retryDelay = null, CancellationToken cancellationToken = default)`
+  - Выполняет функцию `func` в транзакции с retry по `DBConcurrencyException`.
+
+- `Task WithTransaction(Func<Task> func, IsolationLevel isolationLevel = IsolationLevel.RepeatableRead, uint retryCount = 1, TimeSpan? retryDelay = null, CancellationToken cancellationToken = default)`
+  - То же самое, но для операций без возвращаемого значения.
+
+#### Базовый класс `BaseCommand`
+
+- `protected DbSet<TEntity> GetSet<TEntity>() where TEntity : class`
+  - Доступ к `DbSet<TEntity>` текущего `DbContext`.
+
+- `Task<int> SaveChangesAsync()`
+- `Task<int> SaveChangesAsync(CancellationToken cancellationToken)`
+- `int SaveChanges()`
+- `int SaveChanges(bool acceptAllChangesOnSuccess)`
+  - Стандартные методы сохранения изменений в базе.
+
+#### Базовый класс `BaseQuery`
+
+- `protected IQueryable<TEntity> GetAsNoTracking<TEntity>() where TEntity : class`
+  - Запрос без трекинга, для чтения.
+
+- `protected IQueryable<TEntity> GetAsTracking<TEntity>() where TEntity : class`
+  - Запрос с трекингом, для модификации сущностей.
+
+- `protected IAsyncEnumerable<TEntity> GetAsNoTrackingStream<TEntity>() where TEntity : class`
+  - Потоковое чтение без трекинга (большие выборки).
+
+- `protected IAsyncEnumerable<TEntity> GetAsTrackingStream<TEntity>() where TEntity : class`
+  - Потоковое чтение с трекингом. Подходит для небольших выборок, где нужно модифицировать сущности и затем сохранить их через `SaveChanges`, так как все элементы попадают в `ChangeTracker` контекста. Для очень больших выборок лучше использовать вариант без трекинга.

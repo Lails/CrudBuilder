@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Lails.CrudBuilder.DBContext
+﻿namespace Lails.CrudBuilder.DBContext
 {
 	public class Invoice
 	{

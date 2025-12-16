@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests-20251216-150546</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.13.12, Windows 10 (10.0.19045.6216/22H2/2022Update)
+AMD Ryzen 7 2700X, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 9.0.307
+  [Host]     : .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+  Job-LZLXIC : .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+</code></pre>
+<pre><code>InvocationCount=20  IterationCount=5  UnrollFactor=1  
+WarmupCount=3  
+</code></pre>
+
+<table>
+<thead><tr><th>Method                                      </th><th>Mean   </th><th>Error </th><th>StdDev</th><th>Gen0</th><th>Gen1</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>StressTest_RetryCount1_ThrowsAfterFirstAttempt</td><td>87.78 &mu;s</td><td>17.53 &mu;s</td><td>4.553 &mu;s</td><td>-</td><td>-</td><td>9.09 KB</td>
+</tr><tr><td>StressTest_RetryCount2_ThrowsAfterSecondAttempt</td><td>203,513.73 &mu;s</td><td>5,204.53 &mu;s</td><td>1,351.600 &mu;s</td><td>-</td><td>-</td><td>14.38 KB</td>
+</tr><tr><td>StressTest_RetryCount3_ThrowsAfterThirdAttempt</td><td>407,902.91 &mu;s</td><td>11,886.15 &mu;s</td><td>1,839.394 &mu;s</td><td>-</td><td>-</td><td>19.68 KB</td>
+</tr><tr><td>StressTest_RetryCount2_SecondAttemptSucceeds</td><td>203,050.77 &mu;s</td><td>4,407.23 &mu;s</td><td>682.024 &mu;s</td><td>-</td><td>-</td><td>7.46 KB</td>
+</tr><tr><td>StressTest_RetryCount3_ThirdAttemptSucceeds</td><td>408,027.77 &mu;s</td><td>5,565.43 &mu;s</td><td>1,445.324 &mu;s</td><td>-</td><td>-</td><td>12.84 KB</td>
+</tr><tr><td>StressTest_RetryWithDelay_50ms</td><td>62,104.81 &mu;s</td><td>895.51 &mu;s</td><td>232.560 &mu;s</td><td>-</td><td>-</td><td>11.95 KB</td>
+</tr><tr><td>StressTest_RealConcurrencyConflict_ParallelUpdates</td><td>6,761.58 &mu;s</td><td>535.47 &mu;s</td><td>139.059 &mu;s</td><td>100.0000</td><td>-</td><td>529.18 KB</td>
+</tr><tr><td>StressTest_MultipleOperations_WithRetry</td><td>863,379.20 &mu;s</td><td>18,698.49 &mu;s</td><td>4,855.939 &mu;s</td><td>4200.0000</td><td>50.0000</td><td>17258.07 KB</td>
+</tr><tr><td>StressTest_SerializableIsolation_WithConflicts</td><td>407,289.85 &mu;s</td><td>6,637.40 &mu;s</td><td>1,027.145 &mu;s</td><td>-</td><td>-</td><td>20.11 KB</td>
+</tr></tbody></table>
+</body>
+</html>

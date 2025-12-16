@@ -1,0 +1,868 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 9 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\95c835fb-e716-41ae-a231-878bb32fe061
+// command took 1.42 sec and exited with 0
+// start dotnet  build -c Release --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\95c835fb-e716-41ae-a231-878bb32fe061
+// command took 3.9 sec and exited with 0
+// ***** Done, took 00:00:05 (5.43 sec)   *****
+// Found 9 benchmarks:
+//   CrudBuilderStressTests.StressTest_RetryCount1_ThrowsAfterFirstAttempt: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+//   CrudBuilderStressTests.StressTest_RetryCount2_ThrowsAfterSecondAttempt: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+//   CrudBuilderStressTests.StressTest_RetryCount3_ThrowsAfterThirdAttempt: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+//   CrudBuilderStressTests.StressTest_RetryCount2_SecondAttemptSucceeds: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+//   CrudBuilderStressTests.StressTest_RetryCount3_ThirdAttemptSucceeds: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+//   CrudBuilderStressTests.StressTest_RetryWithDelay_50ms: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+//   CrudBuilderStressTests.StressTest_RealConcurrencyConflict_ParallelUpdates: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+//   CrudBuilderStressTests.StressTest_MultipleOperations_WithRetry: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+//   CrudBuilderStressTests.StressTest_SerializableIsolation_WithConflicts: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// **************************
+// Benchmark: CrudBuilderStressTests.StressTest_RetryCount1_ThrowsAfterFirstAttempt: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 95c835fb-e716-41ae-a231-878bb32fe061.dll --anonymousPipes 1612 1996 --benchmarkName Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests.StressTest_RetryCount1_ThrowsAfterFirstAttempt --job "InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3" --benchmarkId 0 in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\95c835fb-e716-41ae-a231-878bb32fe061\bin\Release\net8.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.13.12
+// Runtime=.NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-XFDOUO(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 176900.00 ns, 176.9000 us/op
+WorkloadJitting  1: 1 op, 9143300.00 ns, 9.1433 ms/op
+
+OverheadWarmup   1: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadWarmup   2: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   3: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadWarmup   4: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadWarmup   5: 20 op, 300.00 ns, 15.0000 ns/op
+
+OverheadActual   1: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   2: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   3: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   4: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   5: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   6: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   7: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   8: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual   9: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  10: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  11: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  12: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  13: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  14: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  15: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  16: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  17: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  18: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  19: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  20: 20 op, 200.00 ns, 10.0000 ns/op
+
+WorkloadWarmup   1: 20 op, 1876200.00 ns, 93.8100 us/op
+WorkloadWarmup   2: 20 op, 1816000.00 ns, 90.8000 us/op
+WorkloadWarmup   3: 20 op, 1924800.00 ns, 96.2400 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 20 op, 1781600.00 ns, 89.0800 us/op
+WorkloadActual   2: 20 op, 1728300.00 ns, 86.4150 us/op
+WorkloadActual   3: 20 op, 1694700.00 ns, 84.7350 us/op
+WorkloadActual   4: 20 op, 1673600.00 ns, 83.6800 us/op
+WorkloadActual   5: 20 op, 1901600.00 ns, 95.0800 us/op
+
+// AfterActualRun
+WorkloadResult   1: 20 op, 1781300.00 ns, 89.0650 us/op
+WorkloadResult   2: 20 op, 1728000.00 ns, 86.4000 us/op
+WorkloadResult   3: 20 op, 1694400.00 ns, 84.7200 us/op
+WorkloadResult   4: 20 op, 1673300.00 ns, 83.6650 us/op
+WorkloadResult   5: 20 op, 1901300.00 ns, 95.0650 us/op
+// GC:  0 0 0 186104 20
+// Threading:  0 0 20
+// Exceptions:  6
+
+// AfterAll
+// Benchmark Process 21916 has exited with code 0.
+
+Mean = 87.783 μs, StdErr = 2.036 μs (2.32%), N = 5, StdDev = 4.553 μs
+Min = 83.665 μs, Q1 = 84.720 μs, Median = 86.400 μs, Q3 = 89.065 μs, Max = 95.065 μs
+IQR = 4.345 μs, LowerFence = 78.203 μs, UpperFence = 95.582 μs
+ConfidenceInterval = [70.251 μs; 105.315 μs] (CI 99.9%), Margin = 17.532 μs (19.97% of Mean)
+Skewness = 0.61, Kurtosis = 1.49, MValue = 2
+
+// ** Remained 8 (88,9 %) benchmark(s) to run. Estimated finish 2025-12-16 15:06 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// **************************
+// Benchmark: CrudBuilderStressTests.StressTest_RetryCount2_ThrowsAfterSecondAttempt: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 95c835fb-e716-41ae-a231-878bb32fe061.dll --anonymousPipes 1676 1656 --benchmarkName Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests.StressTest_RetryCount2_ThrowsAfterSecondAttempt --job "InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3" --benchmarkId 1 in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\95c835fb-e716-41ae-a231-878bb32fe061\bin\Release\net8.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.13.12
+// Runtime=.NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-XYXQCA(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 186000.00 ns, 186.0000 us/op
+WorkloadJitting  1: 1 op, 214927700.00 ns, 214.9277 ms/op
+
+OverheadWarmup   1: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   2: 20 op, 800.00 ns, 40.0000 ns/op
+OverheadWarmup   3: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadWarmup   4: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadWarmup   5: 20 op, 300.00 ns, 15.0000 ns/op
+
+OverheadActual   1: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   2: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   3: 20 op, 100.00 ns, 5.0000 ns/op
+OverheadActual   4: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   5: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   6: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   7: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   8: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual   9: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  10: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  11: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  12: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  13: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  14: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  15: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  16: 20 op, 600.00 ns, 30.0000 ns/op
+OverheadActual  17: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  18: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  19: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  20: 20 op, 300.00 ns, 15.0000 ns/op
+
+WorkloadWarmup   1: 20 op, 4073152100.00 ns, 203.6576 ms/op
+WorkloadWarmup   2: 20 op, 4068359300.00 ns, 203.4180 ms/op
+WorkloadWarmup   3: 20 op, 4090025200.00 ns, 204.5013 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 20 op, 4084844100.00 ns, 204.2422 ms/op
+WorkloadActual   2: 20 op, 4057831200.00 ns, 202.8916 ms/op
+WorkloadActual   3: 20 op, 4053926900.00 ns, 202.6963 ms/op
+WorkloadActual   4: 20 op, 4044315100.00 ns, 202.2158 ms/op
+WorkloadActual   5: 20 op, 4110457500.00 ns, 205.5229 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 20 op, 4084843800.00 ns, 204.2422 ms/op
+WorkloadResult   2: 20 op, 4057830900.00 ns, 202.8915 ms/op
+WorkloadResult   3: 20 op, 4053926600.00 ns, 202.6963 ms/op
+WorkloadResult   4: 20 op, 4044314800.00 ns, 202.2157 ms/op
+WorkloadResult   5: 20 op, 4110457200.00 ns, 205.5229 ms/op
+// GC:  0 0 0 294528 20
+// Threading:  33 0 20
+// Exceptions:  9
+
+// AfterAll
+// Benchmark Process 33936 has exited with code 0.
+
+Mean = 203.514 ms, StdErr = 0.604 ms (0.30%), N = 5, StdDev = 1.352 ms
+Min = 202.216 ms, Q1 = 202.696 ms, Median = 202.892 ms, Q3 = 204.242 ms, Max = 205.523 ms
+IQR = 1.546 ms, LowerFence = 200.378 ms, UpperFence = 206.561 ms
+ConfidenceInterval = [198.309 ms; 208.718 ms] (CI 99.9%), Margin = 5.205 ms (2.56% of Mean)
+Skewness = 0.45, Kurtosis = 1.2, MValue = 2
+
+// ** Remained 7 (77,8 %) benchmark(s) to run. Estimated finish 2025-12-16 15:09 (0h 2m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// **************************
+// Benchmark: CrudBuilderStressTests.StressTest_RetryCount3_ThrowsAfterThirdAttempt: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 95c835fb-e716-41ae-a231-878bb32fe061.dll --anonymousPipes 624 1380 --benchmarkName Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests.StressTest_RetryCount3_ThrowsAfterThirdAttempt --job "InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3" --benchmarkId 2 in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\95c835fb-e716-41ae-a231-878bb32fe061\bin\Release\net8.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.13.12
+// Runtime=.NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-OKTSNE(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 181700.00 ns, 181.7000 us/op
+WorkloadJitting  1: 1 op, 433673700.00 ns, 433.6737 ms/op
+
+OverheadWarmup   1: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   2: 20 op, 1300.00 ns, 65.0000 ns/op
+OverheadWarmup   3: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadWarmup   4: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadWarmup   5: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadWarmup   6: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   7: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadWarmup   8: 20 op, 400.00 ns, 20.0000 ns/op
+
+OverheadActual   1: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   2: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   3: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual   4: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   5: 20 op, 600.00 ns, 30.0000 ns/op
+OverheadActual   6: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   7: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   8: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual   9: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  10: 20 op, 900.00 ns, 45.0000 ns/op
+OverheadActual  11: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  12: 20 op, 800.00 ns, 40.0000 ns/op
+OverheadActual  13: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  14: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  15: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  16: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual  17: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  18: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  19: 20 op, 600.00 ns, 30.0000 ns/op
+OverheadActual  20: 20 op, 400.00 ns, 20.0000 ns/op
+
+WorkloadWarmup   1: 20 op, 8134675800.00 ns, 406.7338 ms/op
+WorkloadWarmup   2: 20 op, 8150429900.00 ns, 407.5215 ms/op
+WorkloadWarmup   3: 20 op, 8180193600.00 ns, 409.0097 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 20 op, 8190680400.00 ns, 409.5340 ms/op
+WorkloadActual   2: 20 op, 8261781700.00 ns, 413.0891 ms/op
+WorkloadActual   3: 20 op, 8175834500.00 ns, 408.7917 ms/op
+WorkloadActual   4: 20 op, 8106308700.00 ns, 405.3154 ms/op
+WorkloadActual   5: 20 op, 8159410900.00 ns, 407.9705 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 20 op, 8190680000.00 ns, 409.5340 ms/op
+WorkloadResult   2: 20 op, 8175834100.00 ns, 408.7917 ms/op
+WorkloadResult   3: 20 op, 8106308300.00 ns, 405.3154 ms/op
+WorkloadResult   4: 20 op, 8159410500.00 ns, 407.9705 ms/op
+// GC:  0 0 0 402952 20
+// Threading:  76 0 20
+// Exceptions:  12
+
+// AfterAll
+// Benchmark Process 33916 has exited with code 0.
+
+Mean = 407.903 ms, StdErr = 0.920 ms (0.23%), N = 4, StdDev = 1.839 ms
+Min = 405.315 ms, Q1 = 407.307 ms, Median = 408.381 ms, Q3 = 408.977 ms, Max = 409.534 ms
+IQR = 1.671 ms, LowerFence = 404.801 ms, UpperFence = 411.483 ms
+ConfidenceInterval = [396.017 ms; 419.789 ms] (CI 99.9%), Margin = 11.886 ms (2.91% of Mean)
+Skewness = -0.49, Kurtosis = 1.15, MValue = 2
+
+// ** Remained 6 (66,7 %) benchmark(s) to run. Estimated finish 2025-12-16 15:11 (0h 4m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// **************************
+// Benchmark: CrudBuilderStressTests.StressTest_RetryCount2_SecondAttemptSucceeds: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 95c835fb-e716-41ae-a231-878bb32fe061.dll --anonymousPipes 1708 1368 --benchmarkName Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests.StressTest_RetryCount2_SecondAttemptSucceeds --job "InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3" --benchmarkId 3 in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\95c835fb-e716-41ae-a231-878bb32fe061\bin\Release\net8.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.13.12
+// Runtime=.NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-CIKEWG(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 172600.00 ns, 172.6000 us/op
+WorkloadJitting  1: 1 op, 221631800.00 ns, 221.6318 ms/op
+
+OverheadWarmup   1: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadWarmup   2: 20 op, 1600.00 ns, 80.0000 ns/op
+OverheadWarmup   3: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadWarmup   4: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadWarmup   5: 20 op, 300.00 ns, 15.0000 ns/op
+
+OverheadActual   1: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   2: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   3: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   4: 20 op, 700.00 ns, 35.0000 ns/op
+OverheadActual   5: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   6: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   7: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   8: 20 op, 600.00 ns, 30.0000 ns/op
+OverheadActual   9: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  10: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  11: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  12: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  13: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  14: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  15: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual  16: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  17: 20 op, 600.00 ns, 30.0000 ns/op
+OverheadActual  18: 20 op, 700.00 ns, 35.0000 ns/op
+OverheadActual  19: 20 op, 700.00 ns, 35.0000 ns/op
+OverheadActual  20: 20 op, 600.00 ns, 30.0000 ns/op
+
+WorkloadWarmup   1: 20 op, 4045838000.00 ns, 202.2919 ms/op
+WorkloadWarmup   2: 20 op, 4114350800.00 ns, 205.7175 ms/op
+WorkloadWarmup   3: 20 op, 4068105400.00 ns, 203.4053 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 20 op, 4070733300.00 ns, 203.5367 ms/op
+WorkloadActual   2: 20 op, 4054854200.00 ns, 202.7427 ms/op
+WorkloadActual   3: 20 op, 4073720100.00 ns, 203.6860 ms/op
+WorkloadActual   4: 20 op, 4119848100.00 ns, 205.9924 ms/op
+WorkloadActual   5: 20 op, 4044755600.00 ns, 202.2378 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 20 op, 4070732900.00 ns, 203.5366 ms/op
+WorkloadResult   2: 20 op, 4054853800.00 ns, 202.7427 ms/op
+WorkloadResult   3: 20 op, 4073719700.00 ns, 203.6860 ms/op
+WorkloadResult   4: 20 op, 4044755200.00 ns, 202.2378 ms/op
+// GC:  0 0 0 152768 20
+// Threading:  28 0 20
+// Exceptions:  3
+
+// AfterAll
+// Benchmark Process 38092 has exited with code 0.
+
+Mean = 203.051 ms, StdErr = 0.341 ms (0.17%), N = 4, StdDev = 0.682 ms
+Min = 202.238 ms, Q1 = 202.616 ms, Median = 203.140 ms, Q3 = 203.574 ms, Max = 203.686 ms
+IQR = 0.958 ms, LowerFence = 201.180 ms, UpperFence = 205.010 ms
+ConfidenceInterval = [198.644 ms; 207.458 ms] (CI 99.9%), Margin = 4.407 ms (2.17% of Mean)
+Skewness = -0.15, Kurtosis = 0.77, MValue = 2
+
+// ** Remained 5 (55,6 %) benchmark(s) to run. Estimated finish 2025-12-16 15:11 (0h 3m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// **************************
+// Benchmark: CrudBuilderStressTests.StressTest_RetryCount3_ThirdAttemptSucceeds: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 95c835fb-e716-41ae-a231-878bb32fe061.dll --anonymousPipes 1740 1648 --benchmarkName Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests.StressTest_RetryCount3_ThirdAttemptSucceeds --job "InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3" --benchmarkId 4 in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\95c835fb-e716-41ae-a231-878bb32fe061\bin\Release\net8.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.13.12
+// Runtime=.NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-MPBAXI(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 176900.00 ns, 176.9000 us/op
+WorkloadJitting  1: 1 op, 417987300.00 ns, 417.9873 ms/op
+
+OverheadWarmup   1: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadWarmup   2: 20 op, 1200.00 ns, 60.0000 ns/op
+OverheadWarmup   3: 20 op, 600.00 ns, 30.0000 ns/op
+OverheadWarmup   4: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   5: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadWarmup   6: 20 op, 600.00 ns, 30.0000 ns/op
+OverheadWarmup   7: 20 op, 700.00 ns, 35.0000 ns/op
+OverheadWarmup   8: 20 op, 400.00 ns, 20.0000 ns/op
+
+OverheadActual   1: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   2: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   3: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual   4: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual   5: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   6: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   7: 20 op, 600.00 ns, 30.0000 ns/op
+OverheadActual   8: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   9: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  10: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  11: 20 op, 800.00 ns, 40.0000 ns/op
+OverheadActual  12: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual  13: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  14: 20 op, 800.00 ns, 40.0000 ns/op
+OverheadActual  15: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  16: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  17: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  18: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  19: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  20: 20 op, 300.00 ns, 15.0000 ns/op
+
+WorkloadWarmup   1: 20 op, 8115008800.00 ns, 405.7504 ms/op
+WorkloadWarmup   2: 20 op, 8107819300.00 ns, 405.3910 ms/op
+WorkloadWarmup   3: 20 op, 8107320400.00 ns, 405.3660 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 20 op, 8193351500.00 ns, 409.6676 ms/op
+WorkloadActual   2: 20 op, 8176848000.00 ns, 408.8424 ms/op
+WorkloadActual   3: 20 op, 8165769700.00 ns, 408.2885 ms/op
+WorkloadActual   4: 20 op, 8149212700.00 ns, 407.4606 ms/op
+WorkloadActual   5: 20 op, 8117596600.00 ns, 405.8798 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 20 op, 8193351200.00 ns, 409.6676 ms/op
+WorkloadResult   2: 20 op, 8176847700.00 ns, 408.8424 ms/op
+WorkloadResult   3: 20 op, 8165769400.00 ns, 408.2885 ms/op
+WorkloadResult   4: 20 op, 8149212400.00 ns, 407.4606 ms/op
+WorkloadResult   5: 20 op, 8117596300.00 ns, 405.8798 ms/op
+// GC:  0 0 0 263000 20
+// Threading:  59 0 20
+// Exceptions:  6
+
+// AfterAll
+// Benchmark Process 39672 has exited with code 0.
+
+Mean = 408.028 ms, StdErr = 0.646 ms (0.16%), N = 5, StdDev = 1.445 ms
+Min = 405.880 ms, Q1 = 407.461 ms, Median = 408.288 ms, Q3 = 408.842 ms, Max = 409.668 ms
+IQR = 1.382 ms, LowerFence = 405.388 ms, UpperFence = 410.915 ms
+ConfidenceInterval = [402.462 ms; 413.593 ms] (CI 99.9%), Margin = 5.565 ms (1.36% of Mean)
+Skewness = -0.34, Kurtosis = 1.33, MValue = 2
+
+// ** Remained 4 (44,4 %) benchmark(s) to run. Estimated finish 2025-12-16 15:12 (0h 3m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// **************************
+// Benchmark: CrudBuilderStressTests.StressTest_RetryWithDelay_50ms: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 95c835fb-e716-41ae-a231-878bb32fe061.dll --anonymousPipes 1268 612 --benchmarkName Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests.StressTest_RetryWithDelay_50ms --job "InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3" --benchmarkId 5 in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\95c835fb-e716-41ae-a231-878bb32fe061\bin\Release\net8.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.13.12
+// Runtime=.NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-DIPLJO(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 192800.00 ns, 192.8000 us/op
+WorkloadJitting  1: 1 op, 62759400.00 ns, 62.7594 ms/op
+
+OverheadWarmup   1: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadWarmup   2: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadWarmup   3: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   4: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   5: 20 op, 200.00 ns, 10.0000 ns/op
+
+OverheadActual   1: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   2: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   3: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   4: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   5: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   6: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   7: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   8: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   9: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  10: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  11: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  12: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  13: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  14: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  15: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  16: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  17: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  18: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  19: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  20: 20 op, 200.00 ns, 10.0000 ns/op
+
+WorkloadWarmup   1: 20 op, 1235519300.00 ns, 61.7760 ms/op
+WorkloadWarmup   2: 20 op, 1242393900.00 ns, 62.1197 ms/op
+WorkloadWarmup   3: 20 op, 1238842600.00 ns, 61.9421 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 20 op, 1240857300.00 ns, 62.0429 ms/op
+WorkloadActual   2: 20 op, 1236787100.00 ns, 61.8394 ms/op
+WorkloadActual   3: 20 op, 1248224100.00 ns, 62.4112 ms/op
+WorkloadActual   4: 20 op, 1239210600.00 ns, 61.9605 ms/op
+WorkloadActual   5: 20 op, 1245403100.00 ns, 62.2702 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 20 op, 1240857100.00 ns, 62.0429 ms/op
+WorkloadResult   2: 20 op, 1236786900.00 ns, 61.8393 ms/op
+WorkloadResult   3: 20 op, 1248223900.00 ns, 62.4112 ms/op
+WorkloadResult   4: 20 op, 1239210400.00 ns, 61.9605 ms/op
+WorkloadResult   5: 20 op, 1245402900.00 ns, 62.2701 ms/op
+// GC:  0 0 0 244656 20
+// Threading:  24 0 20
+// Exceptions:  9
+
+// AfterAll
+// Benchmark Process 25120 has exited with code 0.
+
+Mean = 62.105 ms, StdErr = 0.104 ms (0.17%), N = 5, StdDev = 0.233 ms
+Min = 61.839 ms, Q1 = 61.961 ms, Median = 62.043 ms, Q3 = 62.270 ms, Max = 62.411 ms
+IQR = 0.310 ms, LowerFence = 61.496 ms, UpperFence = 62.735 ms
+ConfidenceInterval = [61.209 ms; 63.000 ms] (CI 99.9%), Margin = 0.896 ms (1.44% of Mean)
+Skewness = 0.18, Kurtosis = 1.02, MValue = 2
+
+// ** Remained 3 (33,3 %) benchmark(s) to run. Estimated finish 2025-12-16 15:12 (0h 2m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// **************************
+// Benchmark: CrudBuilderStressTests.StressTest_RealConcurrencyConflict_ParallelUpdates: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 95c835fb-e716-41ae-a231-878bb32fe061.dll --anonymousPipes 1776 1772 --benchmarkName Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests.StressTest_RealConcurrencyConflict_ParallelUpdates --job "InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3" --benchmarkId 6 in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\95c835fb-e716-41ae-a231-878bb32fe061\bin\Release\net8.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.13.12
+// Runtime=.NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-HGDCHV(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 192700.00 ns, 192.7000 us/op
+WorkloadJitting  1: 1 op, 401174500.00 ns, 401.1745 ms/op
+
+OverheadWarmup   1: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   2: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   3: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   4: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   5: 20 op, 300.00 ns, 15.0000 ns/op
+
+OverheadActual   1: 20 op, 600.00 ns, 30.0000 ns/op
+OverheadActual   2: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   3: 20 op, 700.00 ns, 35.0000 ns/op
+OverheadActual   4: 20 op, 800.00 ns, 40.0000 ns/op
+OverheadActual   5: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   6: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   7: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual   8: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   9: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  10: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  11: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  12: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  13: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  14: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  15: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  16: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual  17: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  18: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual  19: 20 op, 600.00 ns, 30.0000 ns/op
+OverheadActual  20: 20 op, 600.00 ns, 30.0000 ns/op
+
+WorkloadWarmup   1: 20 op, 172905100.00 ns, 8.6453 ms/op
+WorkloadWarmup   2: 20 op, 143577400.00 ns, 7.1789 ms/op
+WorkloadWarmup   3: 20 op, 126938300.00 ns, 6.3469 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 20 op, 134447400.00 ns, 6.7224 ms/op
+WorkloadActual   2: 20 op, 131553000.00 ns, 6.5777 ms/op
+WorkloadActual   3: 20 op, 134529100.00 ns, 6.7265 ms/op
+WorkloadActual   4: 20 op, 139029700.00 ns, 6.9515 ms/op
+WorkloadActual   5: 20 op, 136600400.00 ns, 6.8300 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 20 op, 134447000.00 ns, 6.7223 ms/op
+WorkloadResult   2: 20 op, 131552600.00 ns, 6.5776 ms/op
+WorkloadResult   3: 20 op, 134528700.00 ns, 6.7264 ms/op
+WorkloadResult   4: 20 op, 139029300.00 ns, 6.9515 ms/op
+WorkloadResult   5: 20 op, 136600000.00 ns, 6.8300 ms/op
+// GC:  2 0 0 10837592 20
+// Threading:  435 0 20
+
+// AfterAll
+// Benchmark Process 33620 has exited with code 0.
+
+Mean = 6.762 ms, StdErr = 0.062 ms (0.92%), N = 5, StdDev = 0.139 ms
+Min = 6.578 ms, Q1 = 6.722 ms, Median = 6.726 ms, Q3 = 6.830 ms, Max = 6.951 ms
+IQR = 0.108 ms, LowerFence = 6.561 ms, UpperFence = 6.991 ms
+ConfidenceInterval = [6.226 ms; 7.297 ms] (CI 99.9%), Margin = 0.535 ms (7.92% of Mean)
+Skewness = 0.06, Kurtosis = 1.32, MValue = 2
+
+// ** Remained 2 (22,2 %) benchmark(s) to run. Estimated finish 2025-12-16 15:11 (0h 1m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// **************************
+// Benchmark: CrudBuilderStressTests.StressTest_MultipleOperations_WithRetry: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 95c835fb-e716-41ae-a231-878bb32fe061.dll --anonymousPipes 1796 1792 --benchmarkName Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests.StressTest_MultipleOperations_WithRetry --job "InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3" --benchmarkId 7 in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\95c835fb-e716-41ae-a231-878bb32fe061\bin\Release\net8.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.13.12
+// Runtime=.NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-KTWFBS(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 188900.00 ns, 188.9000 us/op
+WorkloadJitting  1: 1 op, 991560900.00 ns, 991.5609 ms/op
+
+OverheadWarmup   1: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadWarmup   2: 20 op, 800.00 ns, 40.0000 ns/op
+OverheadWarmup   3: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   4: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   5: 20 op, 200.00 ns, 10.0000 ns/op
+
+OverheadActual   1: 20 op, 600.00 ns, 30.0000 ns/op
+OverheadActual   2: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   3: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   4: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   5: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   6: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   7: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   8: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   9: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  10: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  11: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  12: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  13: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  14: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  15: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  16: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  17: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  18: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  19: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  20: 20 op, 400.00 ns, 20.0000 ns/op
+
+WorkloadWarmup   1: 20 op, 16916433700.00 ns, 845.8217 ms/op
+WorkloadWarmup   2: 20 op, 16953416800.00 ns, 847.6708 ms/op
+WorkloadWarmup   3: 20 op, 16985721600.00 ns, 849.2861 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 20 op, 17135916700.00 ns, 856.7958 ms/op
+WorkloadActual   2: 20 op, 17227100300.00 ns, 861.3550 ms/op
+WorkloadActual   3: 20 op, 17302092800.00 ns, 865.1046 ms/op
+WorkloadActual   4: 20 op, 17272808100.00 ns, 863.6404 ms/op
+WorkloadActual   5: 20 op, 17400003300.00 ns, 870.0002 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 20 op, 17135916500.00 ns, 856.7958 ms/op
+WorkloadResult   2: 20 op, 17227100100.00 ns, 861.3550 ms/op
+WorkloadResult   3: 20 op, 17302092600.00 ns, 865.1046 ms/op
+WorkloadResult   4: 20 op, 17272807900.00 ns, 863.6404 ms/op
+WorkloadResult   5: 20 op, 17400003100.00 ns, 870.0002 ms/op
+// GC:  84 1 0 353445256 20
+// Threading:  600 0 20
+// Exceptions:  12
+
+// AfterAll
+// Benchmark Process 38540 has exited with code 0.
+
+Mean = 863.379 ms, StdErr = 2.172 ms (0.25%), N = 5, StdDev = 4.856 ms
+Min = 856.796 ms, Q1 = 861.355 ms, Median = 863.640 ms, Q3 = 865.105 ms, Max = 870.000 ms
+IQR = 3.750 ms, LowerFence = 855.731 ms, UpperFence = 870.729 ms
+ConfidenceInterval = [844.681 ms; 882.078 ms] (CI 99.9%), Margin = 18.698 ms (2.17% of Mean)
+Skewness = 0, Kurtosis = 1.38, MValue = 2
+
+// ** Remained 1 (11,1 %) benchmark(s) to run. Estimated finish 2025-12-16 15:13 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// **************************
+// Benchmark: CrudBuilderStressTests.StressTest_SerializableIsolation_WithConflicts: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 95c835fb-e716-41ae-a231-878bb32fe061.dll --anonymousPipes 1776 1772 --benchmarkName Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests.StressTest_SerializableIsolation_WithConflicts --job "InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3" --benchmarkId 8 in C:\Users\limpi\Desktop\GitProjects\lails_projects\Lails.CurdBuilder\Lails.CrudBuilder.Benchmarks\bin\Release\net8.0\95c835fb-e716-41ae-a231-878bb32fe061\bin\Release\net8.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.13.12
+// Runtime=.NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-GQAEMF(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 217900.00 ns, 217.9000 us/op
+WorkloadJitting  1: 1 op, 416101400.00 ns, 416.1014 ms/op
+
+OverheadWarmup   1: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   2: 20 op, 2400.00 ns, 120.0000 ns/op
+OverheadWarmup   3: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadWarmup   4: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadWarmup   5: 20 op, 200.00 ns, 10.0000 ns/op
+
+OverheadActual   1: 20 op, 600.00 ns, 30.0000 ns/op
+OverheadActual   2: 20 op, 900.00 ns, 45.0000 ns/op
+OverheadActual   3: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   4: 20 op, 700.00 ns, 35.0000 ns/op
+OverheadActual   5: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual   6: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual   7: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual   8: 20 op, 700.00 ns, 35.0000 ns/op
+OverheadActual   9: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  10: 20 op, 900.00 ns, 45.0000 ns/op
+OverheadActual  11: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  12: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  13: 20 op, 500.00 ns, 25.0000 ns/op
+OverheadActual  14: 20 op, 200.00 ns, 10.0000 ns/op
+OverheadActual  15: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  16: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  17: 20 op, 400.00 ns, 20.0000 ns/op
+OverheadActual  18: 20 op, 300.00 ns, 15.0000 ns/op
+OverheadActual  19: 20 op, 100.00 ns, 5.0000 ns/op
+OverheadActual  20: 20 op, 200.00 ns, 10.0000 ns/op
+
+WorkloadWarmup   1: 20 op, 8136022700.00 ns, 406.8011 ms/op
+WorkloadWarmup   2: 20 op, 8158796200.00 ns, 407.9398 ms/op
+WorkloadWarmup   3: 20 op, 8147335800.00 ns, 407.3668 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 20 op, 8115874300.00 ns, 405.7937 ms/op
+WorkloadActual   2: 20 op, 8159657300.00 ns, 407.9829 ms/op
+WorkloadActual   3: 20 op, 8195065800.00 ns, 409.7533 ms/op
+WorkloadActual   4: 20 op, 8148852400.00 ns, 407.4426 ms/op
+WorkloadActual   5: 20 op, 8158805500.00 ns, 407.9403 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 20 op, 8115873950.00 ns, 405.7937 ms/op
+WorkloadResult   2: 20 op, 8159656950.00 ns, 407.9828 ms/op
+WorkloadResult   3: 20 op, 8148852050.00 ns, 407.4426 ms/op
+WorkloadResult   4: 20 op, 8158805150.00 ns, 407.9403 ms/op
+// GC:  0 0 0 411936 20
+// Threading:  60 0 20
+// Exceptions:  12
+
+// AfterAll
+// Benchmark Process 15900 has exited with code 0.
+
+Mean = 407.290 ms, StdErr = 0.514 ms (0.13%), N = 4, StdDev = 1.027 ms
+Min = 405.794 ms, Q1 = 407.030 ms, Median = 407.691 ms, Q3 = 407.951 ms, Max = 407.983 ms
+IQR = 0.921 ms, LowerFence = 405.650 ms, UpperFence = 409.332 ms
+ConfidenceInterval = [400.652 ms; 413.927 ms] (CI 99.9%), Margin = 6.637 ms (1.63% of Mean)
+Skewness = -0.63, Kurtosis = 1.22, MValue = 2
+
+// ** Remained 0 (0,0 %) benchmark(s) to run. Estimated finish 2025-12-16 15:14 (0h 0m from now) **
+Successfully reverted power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Высокая производительность)
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts\results\Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests-report.csv
+  BenchmarkDotNet.Artifacts\results\Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests-report-github.md
+  BenchmarkDotNet.Artifacts\results\Lails.CrudBuilder.Benchmarks.Benchmarks.CrudBuilderStressTests-report.html
+
+// * Detailed results *
+CrudBuilderStressTests.StressTest_RetryCount1_ThrowsAfterFirstAttempt: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+Runtime = .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 87.783 μs, StdErr = 2.036 μs (2.32%), N = 5, StdDev = 4.553 μs
+Min = 83.665 μs, Q1 = 84.720 μs, Median = 86.400 μs, Q3 = 89.065 μs, Max = 95.065 μs
+IQR = 4.345 μs, LowerFence = 78.203 μs, UpperFence = 95.582 μs
+ConfidenceInterval = [70.251 μs; 105.315 μs] (CI 99.9%), Margin = 17.532 μs (19.97% of Mean)
+Skewness = 0.61, Kurtosis = 1.49, MValue = 2
+-------------------- Histogram --------------------
+[82.870 μs ; 91.570 μs) | @@@@
+[91.570 μs ; 98.560 μs) | @
+---------------------------------------------------
+
+CrudBuilderStressTests.StressTest_RetryCount2_ThrowsAfterSecondAttempt: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+Runtime = .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 203.514 ms, StdErr = 0.604 ms (0.30%), N = 5, StdDev = 1.352 ms
+Min = 202.216 ms, Q1 = 202.696 ms, Median = 202.892 ms, Q3 = 204.242 ms, Max = 205.523 ms
+IQR = 1.546 ms, LowerFence = 200.378 ms, UpperFence = 206.561 ms
+ConfidenceInterval = [198.309 ms; 208.718 ms] (CI 99.9%), Margin = 5.205 ms (2.56% of Mean)
+Skewness = 0.45, Kurtosis = 1.2, MValue = 2
+-------------------- Histogram --------------------
+[201.178 ms ; 206.560 ms) | @@@@@
+---------------------------------------------------
+
+CrudBuilderStressTests.StressTest_RetryCount3_ThrowsAfterThirdAttempt: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+Runtime = .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 407.903 ms, StdErr = 0.920 ms (0.23%), N = 4, StdDev = 1.839 ms
+Min = 405.315 ms, Q1 = 407.307 ms, Median = 408.381 ms, Q3 = 408.977 ms, Max = 409.534 ms
+IQR = 1.671 ms, LowerFence = 404.801 ms, UpperFence = 411.483 ms
+ConfidenceInterval = [396.017 ms; 419.789 ms] (CI 99.9%), Margin = 11.886 ms (2.91% of Mean)
+Skewness = -0.49, Kurtosis = 1.15, MValue = 2
+-------------------- Histogram --------------------
+[403.795 ms ; 411.055 ms) | @@@@
+---------------------------------------------------
+
+CrudBuilderStressTests.StressTest_RetryCount2_SecondAttemptSucceeds: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+Runtime = .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 203.051 ms, StdErr = 0.341 ms (0.17%), N = 4, StdDev = 0.682 ms
+Min = 202.238 ms, Q1 = 202.616 ms, Median = 203.140 ms, Q3 = 203.574 ms, Max = 203.686 ms
+IQR = 0.958 ms, LowerFence = 201.180 ms, UpperFence = 205.010 ms
+ConfidenceInterval = [198.644 ms; 207.458 ms] (CI 99.9%), Margin = 4.407 ms (2.17% of Mean)
+Skewness = -0.15, Kurtosis = 0.77, MValue = 2
+-------------------- Histogram --------------------
+[201.674 ms ; 204.250 ms) | @@@@
+---------------------------------------------------
+
+CrudBuilderStressTests.StressTest_RetryCount3_ThirdAttemptSucceeds: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+Runtime = .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 408.028 ms, StdErr = 0.646 ms (0.16%), N = 5, StdDev = 1.445 ms
+Min = 405.880 ms, Q1 = 407.461 ms, Median = 408.288 ms, Q3 = 408.842 ms, Max = 409.668 ms
+IQR = 1.382 ms, LowerFence = 405.388 ms, UpperFence = 410.915 ms
+ConfidenceInterval = [402.462 ms; 413.593 ms] (CI 99.9%), Margin = 5.565 ms (1.36% of Mean)
+Skewness = -0.34, Kurtosis = 1.33, MValue = 2
+-------------------- Histogram --------------------
+[404.770 ms ; 410.777 ms) | @@@@@
+---------------------------------------------------
+
+CrudBuilderStressTests.StressTest_RetryWithDelay_50ms: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+Runtime = .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 62.105 ms, StdErr = 0.104 ms (0.17%), N = 5, StdDev = 0.233 ms
+Min = 61.839 ms, Q1 = 61.961 ms, Median = 62.043 ms, Q3 = 62.270 ms, Max = 62.411 ms
+IQR = 0.310 ms, LowerFence = 61.496 ms, UpperFence = 62.735 ms
+ConfidenceInterval = [61.209 ms; 63.000 ms] (CI 99.9%), Margin = 0.896 ms (1.44% of Mean)
+Skewness = 0.18, Kurtosis = 1.02, MValue = 2
+-------------------- Histogram --------------------
+[61.661 ms ; 62.590 ms) | @@@@@
+---------------------------------------------------
+
+CrudBuilderStressTests.StressTest_RealConcurrencyConflict_ParallelUpdates: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+Runtime = .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 6.762 ms, StdErr = 0.062 ms (0.92%), N = 5, StdDev = 0.139 ms
+Min = 6.578 ms, Q1 = 6.722 ms, Median = 6.726 ms, Q3 = 6.830 ms, Max = 6.951 ms
+IQR = 0.108 ms, LowerFence = 6.561 ms, UpperFence = 6.991 ms
+ConfidenceInterval = [6.226 ms; 7.297 ms] (CI 99.9%), Margin = 0.535 ms (7.92% of Mean)
+Skewness = 0.06, Kurtosis = 1.32, MValue = 2
+-------------------- Histogram --------------------
+[6.471 ms ; 6.669 ms) | @
+[6.669 ms ; 6.883 ms) | @@@
+[6.883 ms ; 7.058 ms) | @
+---------------------------------------------------
+
+CrudBuilderStressTests.StressTest_MultipleOperations_WithRetry: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+Runtime = .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 863.379 ms, StdErr = 2.172 ms (0.25%), N = 5, StdDev = 4.856 ms
+Min = 856.796 ms, Q1 = 861.355 ms, Median = 863.640 ms, Q3 = 865.105 ms, Max = 870.000 ms
+IQR = 3.750 ms, LowerFence = 855.731 ms, UpperFence = 870.729 ms
+ConfidenceInterval = [844.681 ms; 882.078 ms] (CI 99.9%), Margin = 18.698 ms (2.17% of Mean)
+Skewness = 0, Kurtosis = 1.38, MValue = 2
+-------------------- Histogram --------------------
+[854.598 ms ; 871.862 ms) | @@@@@
+---------------------------------------------------
+
+CrudBuilderStressTests.StressTest_SerializableIsolation_WithConflicts: Job-LZLXIC(InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3)
+Runtime = .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 407.290 ms, StdErr = 0.514 ms (0.13%), N = 4, StdDev = 1.027 ms
+Min = 405.794 ms, Q1 = 407.030 ms, Median = 407.691 ms, Q3 = 407.951 ms, Max = 407.983 ms
+IQR = 0.921 ms, LowerFence = 405.650 ms, UpperFence = 409.332 ms
+ConfidenceInterval = [400.652 ms; 413.927 ms] (CI 99.9%), Margin = 6.637 ms (1.63% of Mean)
+Skewness = -0.63, Kurtosis = 1.22, MValue = 2
+-------------------- Histogram --------------------
+[404.944 ms ; 408.832 ms) | @@@@
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet v0.13.12, Windows 10 (10.0.19045.6216/22H2/2022Update)
+AMD Ryzen 7 2700X, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 9.0.307
+  [Host]     : .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+  Job-LZLXIC : .NET 8.0.22 (8.0.2225.52707), X64 RyuJIT AVX2
+
+InvocationCount=20  IterationCount=5  UnrollFactor=1  
+WarmupCount=3  
+
+| Method                                             | Mean          | Error        | StdDev       | Gen0      | Gen1    | Allocated   |
+|--------------------------------------------------- |--------------:|-------------:|-------------:|----------:|--------:|------------:|
+| StressTest_RetryCount1_ThrowsAfterFirstAttempt     |      87.78 μs |     17.53 μs |     4.553 μs |         - |       - |     9.09 KB |
+| StressTest_RetryCount2_ThrowsAfterSecondAttempt    | 203,513.73 μs |  5,204.53 μs | 1,351.600 μs |         - |       - |    14.38 KB |
+| StressTest_RetryCount3_ThrowsAfterThirdAttempt     | 407,902.91 μs | 11,886.15 μs | 1,839.394 μs |         - |       - |    19.68 KB |
+| StressTest_RetryCount2_SecondAttemptSucceeds       | 203,050.77 μs |  4,407.23 μs |   682.024 μs |         - |       - |     7.46 KB |
+| StressTest_RetryCount3_ThirdAttemptSucceeds        | 408,027.77 μs |  5,565.43 μs | 1,445.324 μs |         - |       - |    12.84 KB |
+| StressTest_RetryWithDelay_50ms                     |  62,104.81 μs |    895.51 μs |   232.560 μs |         - |       - |    11.95 KB |
+| StressTest_RealConcurrencyConflict_ParallelUpdates |   6,761.58 μs |    535.47 μs |   139.059 μs |  100.0000 |       - |   529.18 KB |
+| StressTest_MultipleOperations_WithRetry            | 863,379.20 μs | 18,698.49 μs | 4,855.939 μs | 4200.0000 | 50.0000 | 17258.07 KB |
+| StressTest_SerializableIsolation_WithConflicts     | 407,289.85 μs |  6,637.40 μs | 1,027.145 μs |         - |       - |    20.11 KB |
+
+// * Warnings *
+MinIterationTime
+  CrudBuilderStressTests.StressTest_RetryCount1_ThrowsAfterFirstAttempt: InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3 -> The minimum observed iteration time is 1.6736 ms which is very small. It's recommended to increase it to at least 100.0000 ms using more operations.
+
+// * Hints *
+Outliers
+  CrudBuilderStressTests.StressTest_RetryCount3_ThrowsAfterThirdAttempt: InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3 -> 1 outlier  was  removed, 2 outliers were detected (405.32 ms, 413.09 ms)
+  CrudBuilderStressTests.StressTest_RetryCount2_SecondAttemptSucceeds: InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3   -> 1 outlier  was  removed (205.99 ms)
+  CrudBuilderStressTests.StressTest_SerializableIsolation_WithConflicts: InvocationCount=20, IterationCount=5, UnrollFactor=1, WarmupCount=3 -> 1 outlier  was  removed, 2 outliers were detected (405.79 ms, 409.75 ms)
+
+// * Legends *
+  Mean      : Arithmetic mean of all measurements
+  Error     : Half of 99.9% confidence interval
+  StdDev    : Standard deviation of all measurements
+  Gen0      : GC Generation 0 collects per 1000 operations
+  Gen1      : GC Generation 1 collects per 1000 operations
+  Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 μs      : 1 Microsecond (0.000001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:08:15 (495.71 sec), executed benchmarks: 9
+
+Global total time: 00:08:21 (501.89 sec), executed benchmarks: 9
+// * Artifacts cleanup *
+Artifacts cleanup is finished

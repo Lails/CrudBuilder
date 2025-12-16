@@ -1,13 +1,11 @@
 ﻿using Lails.CrudBuilder.DBContext;
-using Lails.CrudBuilder.Extansions;
+using Lails.CrudBuilder.Extensions;
 using Lails.CrudBuilder.Load.Tetst.Consumers;
 using Lails.CrudBuilder.Tests;
 using Lails.MQ.Rabbit;
 using MassTransit;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using System.Collections;
+using Microsoft.OpenApi;
 
 namespace Lails.CrudBuilder.Load.Tetst
 {
@@ -22,7 +20,7 @@ namespace Lails.CrudBuilder.Load.Tetst
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<LailsDbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("TransmitterDbTests")),100)
+            services.AddDbContextPool<LailsDbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("TransmitterDbTests")), 100)
                 .AddTransient<DbContext, LailsDbContext>();
 
             services
@@ -52,9 +50,9 @@ namespace Lails.CrudBuilder.Load.Tetst
                 });
         }
 
-        public void Configure(IApplicationBuilder app,  IServiceProvider provider)
+        public void Configure(IApplicationBuilder app, IServiceProvider provider)
         {
-            provider.GetService<LailsDbContext>().Database.Migrate();
+            provider.GetRequiredService<LailsDbContext>().Database.Migrate();
 
 
             app.UseSwagger(c =>
